@@ -1,0 +1,1675 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="에덴교회 달라스 — 사랑하고 섬기며 예배하는 교회. 달라스 캐롤톤 한인 교회. Eden Church at the Field, Carrollton TX.">
+<meta name="keywords" content="달라스 한인교회, 캐롤톤 한인교회, Eden Church Dallas, 텍사스 한인교회">
+<title>에덴교회 달라스 | Eden Church at the Field</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --eden-green: #2D5016;
+    --eden-green-mid: #4A7C2F;
+    --eden-green-light: #7BAE5A;
+    --eden-gold: #C8A94B;
+    --eden-gold-light: #E8D08A;
+    --eden-cream: #FAF6EF;
+    --eden-warm: #F4EDE0;
+    --eden-brown: #6B4E35;
+    --eden-dark: #1A1F0F;
+    --eden-text: #2C2C2C;
+    --eden-muted: #7A7A6E;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    color: var(--eden-text);
+    background: var(--eden-cream);
+    overflow-x: hidden;
+  }
+
+  /* ── LANGUAGE TOGGLE ── */
+  .lang-toggle {
+    position: fixed;
+    top: 20px;
+    right: 24px;
+    z-index: 1000;
+    display: flex;
+    gap: 0;
+    border: 1.5px solid var(--eden-gold);
+    border-radius: 20px;
+    overflow: hidden;
+    backdrop-filter: blur(8px);
+  }
+  .lang-btn {
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    letter-spacing: 0.05em;
+    transition: all 0.3s;
+  }
+  .lang-btn.active {
+    background: var(--eden-gold);
+    color: var(--eden-dark);
+  }
+  .lang-btn:not(.active) {
+    background: rgba(255,255,255,0.85);
+    color: var(--eden-green);
+  }
+
+  /* ── NAVIGATION ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 900;
+    padding: 0 40px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.4s;
+  }
+  nav.scrolled {
+    background: rgba(250,246,239,0.97);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 2px 30px rgba(45,80,22,0.12);
+    border-bottom: 1px solid rgba(200,169,75,0.2);
+  }
+  .nav-logo {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+  }
+  .nav-logo .kr { font-family: 'Noto Serif KR', serif; font-size: 18px; font-weight: 700; color: var(--eden-green); }
+  .nav-logo .en { font-family: 'Cormorant Garamond', serif; font-size: 11px; font-weight: 400; color: var(--eden-gold); letter-spacing: 0.15em; margin-top: 3px; }
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+    align-items: center;
+  }
+  .nav-links a {
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--eden-green);
+    letter-spacing: 0.05em;
+    transition: color 0.3s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -3px; left: 0;
+    width: 0; height: 1.5px;
+    background: var(--eden-gold);
+    transition: width 0.3s;
+  }
+  .nav-links a:hover { color: var(--eden-gold); }
+  .nav-links a:hover::after { width: 100%; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 60% 40%, rgba(74,124,47,0.18) 0%, transparent 65%),
+      radial-gradient(ellipse 50% 70% at 20% 80%, rgba(200,169,75,0.12) 0%, transparent 55%),
+      linear-gradient(160deg, #1A1F0F 0%, #2D5016 40%, #3D6B20 70%, #4A7C2F 100%);
+  }
+  .hero-pattern {
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(200,169,75,0.15) 1px, transparent 0);
+    background-size: 40px 40px;
+    opacity: 0.4;
+  }
+  .hero-cross {
+    position: absolute;
+    right: -60px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 500px;
+    height: 500px;
+    opacity: 0.04;
+  }
+  .hero-cross::before, .hero-cross::after {
+    content: '';
+    position: absolute;
+    background: white;
+    border-radius: 4px;
+  }
+  .hero-cross::before { width: 60px; height: 100%; left: 50%; transform: translateX(-50%); }
+  .hero-cross::after { width: 100%; height: 60px; top: 30%; left: 0; }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 120px 80px 80px;
+    max-width: 700px;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(200,169,75,0.15);
+    border: 1px solid rgba(200,169,75,0.4);
+    padding: 6px 16px;
+    border-radius: 20px;
+    margin-bottom: 32px;
+    animation: fadeUp 0.8s ease both;
+  }
+  .hero-badge span {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--eden-gold-light);
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  .hero-badge-dot {
+    width: 6px; height: 6px;
+    background: var(--eden-gold);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%,100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+  .hero-title-kr {
+    font-family: 'Noto Serif KR', serif;
+    font-size: clamp(38px, 5vw, 58px);
+    font-weight: 600;
+    color: white;
+    line-height: 1.3;
+    margin-bottom: 12px;
+    animation: fadeUp 0.8s 0.15s ease both;
+  }
+  .hero-title-en {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(16px, 2vw, 22px);
+    font-style: italic;
+    font-weight: 300;
+    color: var(--eden-gold-light);
+    letter-spacing: 0.05em;
+    margin-bottom: 28px;
+    animation: fadeUp 0.8s 0.25s ease both;
+  }
+  .hero-divider {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--eden-gold), transparent);
+    margin-bottom: 28px;
+    animation: expandWidth 1s 0.3s ease both;
+  }
+  @keyframes expandWidth { from { width: 0; } to { width: 60px; } }
+  .hero-desc {
+    font-size: 16px;
+    line-height: 1.9;
+    color: rgba(255,255,255,0.78);
+    margin-bottom: 44px;
+    animation: fadeUp 0.8s 0.35s ease both;
+    max-width: 520px;
+  }
+  .hero-desc .en-text { display: none; }
+  .hero-cta {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    animation: fadeUp 0.8s 0.45s ease both;
+  }
+  .btn-primary {
+    padding: 14px 32px;
+    background: linear-gradient(135deg, var(--eden-gold), var(--eden-gold-light));
+    color: var(--eden-dark);
+    border: none;
+    border-radius: 3px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s;
+    letter-spacing: 0.05em;
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(200,169,75,0.4);
+  }
+  .btn-secondary {
+    padding: 14px 32px;
+    background: transparent;
+    color: white;
+    border: 1.5px solid rgba(255,255,255,0.35);
+    border-radius: 3px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s;
+    letter-spacing: 0.05em;
+  }
+  .btn-secondary:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.6);
+    transform: translateY(-2px);
+  }
+  .hero-scroll {
+    position: absolute;
+    bottom: 40px;
+    left: 80px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: rgba(255,255,255,0.45);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    animation: fadeUp 1s 0.8s ease both;
+  }
+  .scroll-line {
+    width: 40px;
+    height: 1px;
+    background: rgba(255,255,255,0.3);
+    position: relative;
+    overflow: hidden;
+  }
+  .scroll-line::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: var(--eden-gold);
+    animation: scrollAnim 2s infinite;
+  }
+  @keyframes scrollAnim { to { left: 100%; } }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── INFO STRIP ── */
+  .info-strip {
+    background: var(--eden-green);
+    padding: 20px 80px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+  }
+  .info-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 0 24px;
+    border-right: 1px solid rgba(255,255,255,0.15);
+  }
+  .info-item:first-child { padding-left: 0; }
+  .info-item:last-child { border-right: none; }
+  .info-icon { font-size: 22px; }
+  .info-label { font-size: 10px; color: var(--eden-gold-light); letter-spacing: 0.15em; text-transform: uppercase; }
+  .info-value { font-size: 14px; color: white; font-weight: 600; margin-top: 2px; }
+  .info-value .en-text { display: none; }
+
+  /* ── SECTION BASE ── */
+  section { padding: 100px 80px; }
+  .section-tag {
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--eden-gold);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: clamp(28px, 3.5vw, 42px);
+    font-weight: 600;
+    color: var(--eden-dark);
+    line-height: 1.3;
+    margin-bottom: 20px;
+  }
+  .section-title .en-text { display: none; }
+  .section-sub {
+    font-size: 15px;
+    line-height: 1.9;
+    color: var(--eden-muted);
+    max-width: 560px;
+  }
+  .section-sub .en-text { display: none; }
+
+  /* ── WELCOME MESSAGE ── */
+  #welcome {
+    background: var(--eden-cream);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+  .welcome-image-side {
+    position: relative;
+  }
+  .welcome-cross-art {
+    width: 100%;
+    max-width: 400px;
+    aspect-ratio: 1;
+    position: relative;
+    margin: 0 auto;
+  }
+  .cross-outer {
+    position: absolute;
+    inset: 0;
+    border: 2px solid rgba(200,169,75,0.25);
+    border-radius: 50%;
+  }
+  .cross-mid {
+    position: absolute;
+    inset: 15%;
+    border: 1.5px solid rgba(200,169,75,0.4);
+    border-radius: 50%;
+  }
+  .cross-inner {
+    position: absolute;
+    inset: 30%;
+    background: linear-gradient(135deg, var(--eden-green), var(--eden-green-mid));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .cross-symbol {
+    color: white;
+    font-size: 48px;
+    line-height: 1;
+    font-weight: 100;
+  }
+  .cross-orbit {
+    position: absolute;
+    inset: 0;
+    animation: rotateSlow 20s linear infinite;
+  }
+  .cross-orbit-dot {
+    position: absolute;
+    width: 10px; height: 10px;
+    background: var(--eden-gold);
+    border-radius: 50%;
+    top: 0; left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  @keyframes rotateSlow { to { transform: rotate(360deg); } }
+
+  .pastor-quote {
+    background: var(--eden-warm);
+    border-left: 4px solid var(--eden-gold);
+    padding: 32px 36px;
+    border-radius: 0 8px 8px 0;
+    margin-top: 32px;
+    position: relative;
+  }
+  .pastor-quote::before {
+    content: '"';
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 80px;
+    color: var(--eden-gold);
+    opacity: 0.3;
+    position: absolute;
+    top: -10px; left: 20px;
+    line-height: 1;
+  }
+  .pastor-quote p {
+    font-size: 15px;
+    line-height: 2;
+    color: var(--eden-text);
+    font-style: italic;
+    position: relative;
+    z-index: 1;
+  }
+  .pastor-quote p .en-text { display: none; }
+  .pastor-info {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .pastor-avatar {
+    width: 44px; height: 44px;
+    background: linear-gradient(135deg, var(--eden-green), var(--eden-green-light));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+    font-family: 'Noto Serif KR', serif;
+  }
+  .pastor-name-label { font-size: 13px; font-weight: 700; color: var(--eden-green); }
+  .pastor-title-label { font-size: 11px; color: var(--eden-muted); margin-top: 1px; }
+  .pastor-title-label .en-text { display: none; }
+
+  /* ── WORSHIP INFO ── */
+  #worship { background: var(--eden-warm); }
+  .worship-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 56px;
+  }
+  .worship-card {
+    background: white;
+    border-radius: 8px;
+    padding: 36px 32px;
+    border-top: 4px solid var(--eden-green);
+    box-shadow: 0 4px 20px rgba(45,80,22,0.06);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .worship-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(45,80,22,0.12);
+  }
+  .worship-card-icon { font-size: 32px; margin-bottom: 16px; }
+  .worship-card-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--eden-green);
+    margin-bottom: 6px;
+  }
+  .worship-card-title .en-text { display: none; }
+  .worship-card-time {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--eden-gold);
+    font-family: 'Cormorant Garamond', serif;
+    margin-bottom: 14px;
+  }
+  .worship-card p {
+    font-size: 13px;
+    line-height: 1.8;
+    color: var(--eden-muted);
+  }
+  .worship-card p .en-text { display: none; }
+  .worship-badge {
+    display: inline-block;
+    margin-top: 14px;
+    padding: 4px 12px;
+    background: rgba(45,80,22,0.08);
+    color: var(--eden-green);
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+  }
+  .worship-badge .en-text { display: none; }
+
+  /* ── FIRST VISIT ── */
+  #firstvisit {
+    background: white;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .faq-list { margin-top: 40px; }
+  .faq-item {
+    border-bottom: 1px solid rgba(45,80,22,0.1);
+    padding: 22px 0;
+  }
+  .faq-q {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--eden-green);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .faq-q::before {
+    content: 'Q';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    background: var(--eden-green);
+    color: white;
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .faq-a {
+    font-size: 13px;
+    line-height: 1.8;
+    color: var(--eden-muted);
+    padding-left: 32px;
+  }
+  .faq-a .en-text { display: none; }
+  .faq-q .en-text { display: none; }
+  .visit-flow {
+    background: linear-gradient(160deg, var(--eden-green), var(--eden-green-mid));
+    border-radius: 12px;
+    padding: 44px 40px;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  .visit-flow::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 200px; height: 200px;
+    border: 40px solid rgba(255,255,255,0.05);
+    border-radius: 50%;
+  }
+  .visit-flow-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 32px;
+    color: var(--eden-gold-light);
+  }
+  .visit-flow-title .en-text { display: none; }
+  .flow-step {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+    align-items: flex-start;
+  }
+  .flow-num {
+    width: 32px; height: 32px;
+    border: 2px solid var(--eden-gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--eden-gold);
+    flex-shrink: 0;
+  }
+  .flow-text { font-size: 13px; line-height: 1.7; color: rgba(255,255,255,0.85); padding-top: 5px; }
+  .flow-text .en-text { display: none; }
+
+  /* ── VISION ── */
+  #vision {
+    background: var(--eden-dark);
+    color: white;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  #vision::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 1px 1px, rgba(200,169,75,0.08) 1px, transparent 0);
+    background-size: 48px 48px;
+  }
+  #vision .section-tag { color: var(--eden-gold); }
+  #vision .section-title { color: white; margin: 0 auto 20px; }
+  #vision .section-sub { color: rgba(255,255,255,0.65); margin: 0 auto 60px; }
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    position: relative;
+    z-index: 1;
+    margin-top: 60px;
+  }
+  .value-item {
+    padding: 32px 20px;
+    border: 1px solid rgba(200,169,75,0.2);
+    border-radius: 8px;
+    transition: all 0.3s;
+  }
+  .value-item:hover {
+    border-color: var(--eden-gold);
+    background: rgba(200,169,75,0.05);
+    transform: translateY(-4px);
+  }
+  .value-emoji { font-size: 32px; margin-bottom: 14px; }
+  .value-kr { font-family: 'Noto Serif KR', serif; font-size: 20px; font-weight: 700; color: var(--eden-gold); margin-bottom: 6px; }
+  .value-en { font-family: 'Cormorant Garamond', serif; font-size: 14px; color: rgba(255,255,255,0.5); font-style: italic; }
+  .vision-statement {
+    margin-top: 60px;
+    padding: 48px;
+    background: rgba(200,169,75,0.08);
+    border: 1px solid rgba(200,169,75,0.25);
+    border-radius: 8px;
+    position: relative;
+    z-index: 1;
+  }
+  .vision-statement p {
+    font-size: 17px;
+    line-height: 2;
+    color: rgba(255,255,255,0.85);
+    font-style: italic;
+  }
+  .vision-statement p .en-text { display: none; }
+
+  /* ── COMMUNITY ── */
+  #community { background: var(--eden-cream); }
+  .community-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+    margin-top: 56px;
+  }
+  .community-card {
+    display: flex;
+    gap: 24px;
+    padding: 32px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 16px rgba(45,80,22,0.06);
+    transition: box-shadow 0.3s;
+  }
+  .community-card:hover { box-shadow: 0 8px 32px rgba(45,80,22,0.12); }
+  .community-icon {
+    width: 56px; height: 56px;
+    background: linear-gradient(135deg, rgba(45,80,22,0.1), rgba(74,124,47,0.15));
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+  }
+  .community-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--eden-green);
+    margin-bottom: 8px;
+  }
+  .community-title .en-text { display: none; }
+  .community-desc { font-size: 13px; line-height: 1.8; color: var(--eden-muted); }
+  .community-desc .en-text { display: none; }
+
+  /* ── MAP ── */
+  #location { background: white; }
+  .location-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+    margin-top: 56px;
+  }
+  .map-container {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 40px rgba(45,80,22,0.15);
+    aspect-ratio: 4/3;
+  }
+  .map-container iframe { width: 100%; height: 100%; border: none; }
+  .location-detail { padding: 8px 0; }
+  .location-row {
+    display: flex;
+    gap: 16px;
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(45,80,22,0.08);
+    align-items: flex-start;
+  }
+  .location-row-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+  .location-row-label { font-size: 11px; color: var(--eden-gold); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
+  .location-row-value { font-size: 14px; color: var(--eden-text); font-weight: 500; margin-top: 4px; line-height: 1.6; }
+  .location-row-value .en-text { display: none; }
+  .directions-btn {
+    margin-top: 28px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--eden-green);
+    color: white;
+    padding: 14px 28px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: all 0.3s;
+  }
+  .directions-btn:hover { background: var(--eden-green-mid); transform: translateY(-2px); }
+
+  /* ── HEBRONGUIDE BANNER ── */
+  #hebron {
+    background: linear-gradient(135deg, #1A3A5C 0%, #0D2640 100%);
+    padding: 60px 80px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 40px;
+  }
+  .hebron-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.1);
+    padding: 4px 14px;
+    border-radius: 12px;
+    margin-bottom: 16px;
+  }
+  .hebron-badge span { font-size: 11px; color: #90CAF9; letter-spacing: 0.15em; font-weight: 600; text-transform: uppercase; }
+  .hebron-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 26px;
+    color: white;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .hebron-title .en-text { display: none; }
+  .hebron-desc { font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.8; }
+  .hebron-desc .en-text { display: none; }
+  .hebron-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #2196F3;
+    color: white;
+    padding: 14px 28px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: all 0.3s;
+  }
+  .hebron-link:hover { background: #1976D2; transform: translateY(-2px); }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--eden-warm); }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    margin-top: 56px;
+  }
+  .contact-form { display: flex; flex-direction: column; gap: 16px; }
+  .form-group label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--eden-green);
+    letter-spacing: 0.08em;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+  }
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1.5px solid rgba(45,80,22,0.2);
+    border-radius: 4px;
+    font-size: 14px;
+    font-family: 'Noto Sans KR', sans-serif;
+    background: white;
+    color: var(--eden-text);
+    transition: border-color 0.3s;
+    outline: none;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus {
+    border-color: var(--eden-green);
+  }
+  .form-group textarea { height: 120px; resize: vertical; }
+  .submit-btn {
+    padding: 14px 32px;
+    background: var(--eden-green);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: 'Noto Sans KR', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+  }
+  .submit-btn:hover { background: var(--eden-green-mid); transform: translateY(-1px); }
+  .contact-info-list { display: flex; flex-direction: column; gap: 24px; }
+  .contact-info-item { display: flex; gap: 16px; align-items: flex-start; }
+  .contact-info-icon {
+    width: 44px; height: 44px;
+    background: var(--eden-green);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .contact-info-label { font-size: 11px; color: var(--eden-gold); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
+  .contact-info-value { font-size: 15px; color: var(--eden-text); font-weight: 500; margin-top: 4px; }
+  .give-box {
+    background: linear-gradient(135deg, var(--eden-green), var(--eden-green-mid));
+    border-radius: 8px;
+    padding: 32px;
+    color: white;
+    margin-top: 32px;
+  }
+  .give-title { font-family: 'Noto Serif KR', serif; font-size: 18px; font-weight: 600; margin-bottom: 12px; }
+  .give-title .en-text { display: none; }
+  .give-desc { font-size: 13px; color: rgba(255,255,255,0.75); line-height: 1.8; }
+  .give-desc .en-text { display: none; }
+  .give-method { font-size: 20px; font-weight: 700; color: var(--eden-gold-light); margin-top: 16px; letter-spacing: 0.05em; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--eden-dark);
+    padding: 60px 80px 32px;
+    color: rgba(255,255,255,0.55);
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 60px;
+    margin-bottom: 48px;
+  }
+  .footer-logo { font-family: 'Noto Serif KR', serif; font-size: 22px; font-weight: 700; color: white; margin-bottom: 12px; }
+  .footer-mission { font-size: 13px; line-height: 1.9; color: rgba(255,255,255,0.5); }
+  .footer-mission .en-text { display: none; }
+  .footer-heading { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--eden-gold); font-weight: 600; margin-bottom: 16px; }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-links a { color: rgba(255,255,255,0.55); text-decoration: none; font-size: 13px; transition: color 0.3s; }
+  .footer-links a:hover { color: var(--eden-gold-light); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 12px;
+  }
+  .footer-partner {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+  }
+  .partner-dot { width: 6px; height: 6px; background: var(--eden-gold); border-radius: 50%; }
+
+  /* ── ENGLISH MODE ── */
+  body.en-mode .kr-text { display: none !important; }
+  body.en-mode .en-text { display: inline !important; }
+  body.en-mode .en-block { display: block !important; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    section { padding: 80px 40px; }
+    nav { padding: 0 24px; }
+    .info-strip { padding: 20px 40px; }
+    .hero-content { padding: 120px 40px 60px; }
+    .values-grid { grid-template-columns: repeat(3, 1fr); }
+    #hebron { padding: 48px 40px; }
+    footer { padding: 60px 40px 32px; }
+  }
+  @media (max-width: 768px) {
+    .nav-links { display: none; }
+    #welcome, #firstvisit, #location, .contact-grid { grid-template-columns: 1fr; }
+    .worship-grid { grid-template-columns: 1fr; }
+    .values-grid { grid-template-columns: repeat(2, 1fr); }
+    .community-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+    #hebron { grid-template-columns: 1fr; }
+    .info-strip { grid-template-columns: 1fr; }
+    .info-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.15); padding: 12px 0; }
+    section { padding: 60px 24px; }
+    .hero-content { padding: 100px 24px 60px; }
+    .hero-scroll { left: 24px; }
+    #hebron { padding: 40px 24px; }
+    footer { padding: 48px 24px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- LANG TOGGLE -->
+<div class="lang-toggle">
+  <button class="lang-btn active" onclick="setLang('ko')" id="btn-ko">한국어</button>
+  <button class="lang-btn" onclick="setLang('en')" id="btn-en">ENG</button>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-logo">
+    <span class="kr">에덴교회 달라스</span>
+    <span class="en">Eden Church at the Field</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#welcome"><span class="kr-text">목사님 인사말</span><span class="en-text" style="display:none">Welcome</span></a></li>
+    <li><a href="#worship"><span class="kr-text">예배 안내</span><span class="en-text" style="display:none">Worship</span></a></li>
+    <li><a href="#firstvisit"><span class="kr-text">처음 오시는 분</span><span class="en-text" style="display:none">First Visit</span></a></li>
+    <li><a href="#vision"><span class="kr-text">비전</span><span class="en-text" style="display:none">Vision</span></a></li>
+    <li><a href="#location"><span class="kr-text">오시는 길</span><span class="en-text" style="display:none">Location</span></a></li>
+    <li><a href="#contact"><span class="kr-text">연락하기</span><span class="en-text" style="display:none">Contact</span></a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-pattern"></div>
+  <div class="hero-cross"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <div class="hero-badge-dot"></div>
+      <span class="kr-text">달라스 캐롤톤 한인교회 · 2005년 설립</span>
+      <span class="en-text" style="display:none">CARROLLTON, TX · Est. 2005</span>
+    </div>
+    <h1 class="hero-title-kr">사랑하고<br>섬기며 예배하는<br>교회</h1>
+    <p class="hero-title-en">A Church that Loves, Serves, and Worships</p>
+    <div class="hero-divider"></div>
+    <p class="hero-desc">
+      <span class="kr-text">달라스 에덴교회에 오신 것을 환영합니다.<br>믿음이 없어도 괜찮습니다. 지금 함께 할 수 있다면,<br>그것만으로 충분합니다.</span>
+      <span class="en-text" style="display:none">Welcome to Eden Church Dallas.<br>You don't need to have it all figured out.<br>If you can come as you are, that is more than enough.</span>
+    </p>
+    <div class="hero-cta">
+      <a href="#firstvisit" class="btn-primary">
+        <span class="kr-text">처음 오시는 분 →</span>
+        <span class="en-text" style="display:none">First Visit Guide →</span>
+      </a>
+      <a href="#worship" class="btn-secondary">
+        <span class="kr-text">예배 안내</span>
+        <span class="en-text" style="display:none">Worship Times</span>
+      </a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span class="kr-text">아래로 스크롤</span>
+    <span class="en-text" style="display:none">Scroll</span>
+  </div>
+</section>
+
+<!-- INFO STRIP -->
+<div class="info-strip">
+  <div class="info-item">
+    <div class="info-icon">🕐</div>
+    <div>
+      <div class="info-label"><span class="kr-text">주일예배</span><span class="en-text" style="display:none">Sunday Worship</span></div>
+      <div class="info-value"><span class="kr-text">매주 일요일 오후 12:30</span><span class="en-text" style="display:none">Every Sunday 12:30 PM</span></div>
+    </div>
+  </div>
+  <div class="info-item">
+    <div class="info-icon">📍</div>
+    <div>
+      <div class="info-label"><span class="kr-text">주소</span><span class="en-text" style="display:none">Address</span></div>
+      <div class="info-value">1401 Carrollton Pkwy, TX 75010</div>
+    </div>
+  </div>
+  <div class="info-item">
+    <div class="info-icon">📞</div>
+    <div>
+      <div class="info-label"><span class="kr-text">연락처</span><span class="en-text" style="display:none">Contact</span></div>
+      <div class="info-value">214-629-3066</div>
+    </div>
+  </div>
+</div>
+
+<!-- WELCOME -->
+<section id="welcome">
+  <div class="welcome-image-side">
+    <div class="welcome-cross-art">
+      <div class="cross-outer"></div>
+      <div class="cross-mid"></div>
+      <div class="cross-inner">
+        <div class="cross-symbol">✝</div>
+      </div>
+      <div class="cross-orbit">
+        <div class="cross-orbit-dot"></div>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top: 20px;">
+      <div style="font-family:'Noto Serif KR',serif; font-size:13px; color:var(--eden-muted); letter-spacing:0.1em;">
+        <span class="kr-text">십자가를 중심으로 하나되는 공동체</span>
+        <span class="en-text" style="display:none">One Community Centered on the Cross</span>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="section-tag">
+      <span class="kr-text">담임목사 인사말</span>
+      <span class="en-text" style="display:none">Pastor's Welcome</span>
+    </div>
+    <h2 class="section-title">
+      <span class="kr-text">여러분을<br>환영합니다</span>
+      <span class="en-text" style="display:none">You Are<br>Welcome Here</span>
+    </h2>
+    <div class="pastor-quote">
+      <p>
+        <span class="kr-text">교회는 성숙하고 믿음이 가득한 사람들만이 모이는 장소가 아닙니다. 교회는 상처받고, 소외되고, 무언가 궁금하고, 힘든 여정을 걷는 사람들, 그리고 감사하고 기뻐하는 사람들이 함께 모이는 장소입니다. 아직 믿음이, 신앙이 준비되어 있지 않아도 괜찮습니다. 지금 함께 할 수 있다면, 그것만으로 충분합니다. 에덴교회는 여러분을 환영합니다.</span>
+        <span class="en-text" style="display:none">Church is not a place reserved for the perfect and the faithful. It is a place where the hurting, the searching, the grateful, and the joyful all come together. You don't need to have it all figured out. If you can come as you are, that is more than enough. Eden Church welcomes you.</span>
+      </p>
+      <div class="pastor-info">
+        <div class="pastor-avatar">신</div>
+        <div>
+          <div class="pastor-name-label">신종우 목사 | Rev. Jong-Woo Shin</div>
+          <div class="pastor-title-label">
+            <span class="kr-text">에덴교회 달라스 담임목사 · Ph.D., MBTS</span>
+            <span class="en-text" style="display:none">Senior Pastor, Eden Church Dallas · Ph.D., MBTS</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORSHIP -->
+<section id="worship">
+  <div class="section-tag">
+    <span class="kr-text">예배 안내</span>
+    <span class="en-text" style="display:none">Worship Schedule</span>
+  </div>
+  <h2 class="section-title">
+    <span class="kr-text">함께 예배드려요</span>
+    <span class="en-text" style="display:none">Join Us for Worship</span>
+  </h2>
+  <p class="section-sub">
+    <span class="kr-text">에덴교회는 매주 주일 오후 12:30에 한국어 예배를 드립니다.<br>온라인 및 주중 소그룹 모임도 열려 있습니다.</span>
+    <span class="en-text" style="display:none">Eden Church gathers every Sunday at 12:30 PM for Korean-language worship.<br>We also offer online and weekday small group gatherings.</span>
+  </p>
+  <div class="worship-grid">
+    <div class="worship-card">
+      <div class="worship-card-icon">⛪</div>
+      <div class="worship-card-title">
+        <span class="kr-text">주일 예배</span>
+        <span class="en-text" style="display:none">Sunday Worship</span>
+      </div>
+      <div class="worship-card-time">Sun. 12:30 PM</div>
+      <p>
+        <span class="kr-text">한국어 예배<br>1401 Carrollton Pkwy<br>Carrollton, TX 75010</span>
+        <span class="en-text" style="display:none">Korean Language Worship<br>1401 Carrollton Pkwy<br>Carrollton, TX 75010</span>
+      </p>
+      <span class="worship-badge">
+        <span class="kr-text">주차 무료</span>
+        <span class="en-text" style="display:none">Free Parking</span>
+      </span>
+    </div>
+    <div class="worship-card">
+      <div class="worship-card-icon">💻</div>
+      <div class="worship-card-title">
+        <span class="kr-text">수요 성경공부</span>
+        <span class="en-text" style="display:none">Wed. Bible Study</span>
+      </div>
+      <div class="worship-card-time">Wed. 7:00 PM</div>
+      <p>
+        <span class="kr-text">역대하 성경공부<br>Zoom 온라인 진행<br>(링크 문의)</span>
+        <span class="en-text" style="display:none">2 Chronicles Bible Study<br>Via Zoom (Online)<br>Contact for link</span>
+      </p>
+      <span class="worship-badge">Zoom Online</span>
+    </div>
+    <div class="worship-card">
+      <div class="worship-card-icon">🙏</div>
+      <div class="worship-card-title">
+        <span class="kr-text">목요 기도회</span>
+        <span class="en-text" style="display:none">Thu. Prayer Meeting</span>
+      </div>
+      <div class="worship-card-time">Thu. 5:00 PM</div>
+      <p>
+        <span class="kr-text">소그룹 기도회<br>+ 성경공부<br>장소 문의</span>
+        <span class="en-text" style="display:none">Small Group Prayer<br>+ Bible Study<br>Contact for location</span>
+      </p>
+      <span class="worship-badge">
+        <span class="kr-text">소그룹</span>
+        <span class="en-text" style="display:none">Small Group</span>
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- FIRST VISIT -->
+<section id="firstvisit">
+  <div>
+    <div class="section-tag">
+      <span class="kr-text">처음 오시는 분</span>
+      <span class="en-text" style="display:none">First Time Here?</span>
+    </div>
+    <h2 class="section-title">
+      <span class="kr-text">걱정 마세요,<br>편하게 오세요</span>
+      <span class="en-text" style="display:none">No Worries,<br>Come As You Are</span>
+    </h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">
+          <span class="kr-text">어떤 옷을 입고 가야 하나요?</span>
+          <span class="en-text" style="display:none">What should I wear?</span>
+        </div>
+        <div class="faq-a">
+          <span class="kr-text">편하게 입고 오세요. 정장도 캐주얼도 모두 환영합니다.</span>
+          <span class="en-text" style="display:none">Come as you are — formal, casual, whatever is comfortable for you.</span>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          <span class="kr-text">헌금을 꼭 내야 하나요?</span>
+          <span class="en-text" style="display:none">Do I need to give an offering?</span>
+        </div>
+        <div class="faq-a">
+          <span class="kr-text">아닙니다. 헌금은 자발적이며, 처음 방문하시는 분께는 전혀 기대하지 않습니다.</span>
+          <span class="en-text" style="display:none">Not at all. Giving is voluntary, and we have no expectation for first-time guests.</span>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          <span class="kr-text">예배 순서를 몰라도 되나요?</span>
+          <span class="en-text" style="display:none">What if I don't know the order of service?</span>
+        </div>
+        <div class="faq-a">
+          <span class="kr-text">걱정 마세요. 안내 위원이 도와드리며, 그냥 따라가시면 됩니다.</span>
+          <span class="en-text" style="display:none">No worries. Our greeters will guide you, and you can simply follow along.</span>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          <span class="kr-text">예배 시간은 얼마나 되나요?</span>
+          <span class="en-text" style="display:none">How long is the service?</span>
+        </div>
+        <div class="faq-a">
+          <span class="kr-text">약 60~90분 정도입니다. 예배 후 자유롭게 교제할 수 있습니다.</span>
+          <span class="en-text" style="display:none">About 60–90 minutes, followed by a relaxed time of fellowship.</span>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">
+          <span class="kr-text">아이를 데려와도 되나요?</span>
+          <span class="en-text" style="display:none">Can I bring my children?</span>
+        </div>
+        <div class="faq-a">
+          <span class="kr-text">물론입니다. 10대부터 80대까지 모든 연령대를 환영합니다.</span>
+          <span class="en-text" style="display:none">Absolutely! We welcome guests of all ages, from teens to seniors.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="visit-flow">
+    <div class="visit-flow-title">
+      <span class="kr-text">✨ 첫 방문 흐름 안내</span>
+      <span class="en-text" style="display:none">✨ What to Expect</span>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">1</div>
+      <div class="flow-text">
+        <span class="kr-text"><strong>주차</strong> — 무료 주차, 넓고 편리한 환경</span>
+        <span class="en-text" style="display:none"><strong>Park</strong> — Free, convenient parking available</span>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">2</div>
+      <div class="flow-text">
+        <span class="kr-text"><strong>입장</strong> — 안내 위원의 친절한 첫 인사와 안내</span>
+        <span class="en-text" style="display:none"><strong>Enter</strong> — Warm welcome from our greeting team</span>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">3</div>
+      <div class="flow-text">
+        <span class="kr-text"><strong>예배</strong> — 찬양, 기도, 말씀 (약 60~90분)</span>
+        <span class="en-text" style="display:none"><strong>Worship</strong> — Praise, prayer, message (~60–90 min)</span>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">4</div>
+      <div class="flow-text">
+        <span class="kr-text"><strong>교제</strong> — 예배 후 자유로운 만남과 나눔</span>
+        <span class="en-text" style="display:none"><strong>Fellowship</strong> — Casual connection after service</span>
+      </div>
+    </div>
+    <div class="flow-step" style="margin-bottom:0">
+      <div class="flow-num">5</div>
+      <div class="flow-text">
+        <span class="kr-text"><strong>새가족 환영</strong> — 4주 목적이 이끄는 양육반 안내</span>
+        <span class="en-text" style="display:none"><strong>New Members</strong> — 4-week Purpose Driven orientation</span>
+      </div>
+    </div>
+    <div style="margin-top: 32px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.15);">
+      <a href="#contact" style="color: var(--eden-gold-light); font-size: 13px; text-decoration: none; font-weight: 600;">
+        <span class="kr-text">📩 방문 전 미리 연락하기 →</span>
+        <span class="en-text" style="display:none">📩 Contact us before visiting →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- VISION -->
+<section id="vision">
+  <div class="section-tag">
+    <span class="kr-text">비전 & 가치</span>
+    <span class="en-text" style="display:none">Vision & Values</span>
+  </div>
+  <h2 class="section-title" style="max-width:600px;margin:0 auto 16px;">
+    <span class="kr-text">사랑하고 섬기며<br>예배하는 교회</span>
+    <span class="en-text" style="display:none">Loves, Serves,<br>and Worships</span>
+  </h2>
+  <p class="section-sub" style="margin: 0 auto 0;">
+    <span class="kr-text">에덴교회는 성도가 가정, 교회, 사회에서<br>성숙한 리더로 성장하는 공동체를 세워갑니다.</span>
+    <span class="en-text" style="display:none">Eden Church equips believers to become<br>mature leaders in their homes, church, and community.</span>
+  </p>
+  <div class="values-grid">
+    <div class="value-item">
+      <div class="value-emoji">❤️</div>
+      <div class="value-kr">사랑</div>
+      <div class="value-en">Love</div>
+    </div>
+    <div class="value-item">
+      <div class="value-emoji">🤝</div>
+      <div class="value-kr">섬김</div>
+      <div class="value-en">Serve</div>
+    </div>
+    <div class="value-item">
+      <div class="value-emoji">📖</div>
+      <div class="value-kr">배움</div>
+      <div class="value-en">Learn</div>
+    </div>
+    <div class="value-item">
+      <div class="value-emoji">🌱</div>
+      <div class="value-kr">가르침</div>
+      <div class="value-en">Teach</div>
+    </div>
+    <div class="value-item">
+      <div class="value-emoji">🙌</div>
+      <div class="value-kr">예배</div>
+      <div class="value-en">Worship</div>
+    </div>
+  </div>
+  <div class="vision-statement">
+    <p>
+      <span class="kr-text">"향후 5년, 에덴교회는 3개의 소공동체를 세웁니다. 각 공동체는 30명의 구성원으로 이루어진 독립적 교회 역할을 하며, 가정-교회-학교-사회를 잇는 네트워크 교회 허브를 제시합니다."</span>
+      <span class="en-text" style="display:none">"In five years, Eden Church will plant three small communities of 30. Each will function as a fully independent church — a network hub connecting families, faith, schools, and society."</span>
+    </p>
+    <div style="margin-top: 16px; font-size: 13px; color: rgba(255,255,255,0.45); letter-spacing: 0.1em;">
+      <span class="kr-text">— 신종우 목사, 5개년 비전 (2026-2030)</span>
+      <span class="en-text" style="display:none">— Pastor Jong-Woo Shin, 5-Year Vision (2026–2030)</span>
+    </div>
+  </div>
+</section>
+
+<!-- COMMUNITY -->
+<section id="community">
+  <div class="section-tag">
+    <span class="kr-text">공동체 & 사역</span>
+    <span class="en-text" style="display:none">Community & Ministry</span>
+  </div>
+  <h2 class="section-title">
+    <span class="kr-text">함께 성장하는<br>에덴 공동체</span>
+    <span class="en-text" style="display:none">Growing Together<br>at Eden</span>
+  </h2>
+  <div class="community-grid">
+    <div class="community-card">
+      <div class="community-icon">👨‍👩‍👧‍👦</div>
+      <div>
+        <div class="community-title">
+          <span class="kr-text">월말 가정예배</span>
+          <span class="en-text" style="display:none">Monthly Home Worship</span>
+        </div>
+        <div class="community-desc">
+          <span class="kr-text">매월 마지막 주일 오전 11시, 목회자 가정에서 함께 드리는 예배. 예배 후 식사와 교제로 진정한 가족 공동체를 경험합니다.</span>
+          <span class="en-text" style="display:none">Last Sunday of each month at 11 AM at the pastor's home. Experience true family community with worship and a shared meal.</span>
+        </div>
+      </div>
+    </div>
+    <div class="community-card">
+      <div class="community-icon">🌿</div>
+      <div>
+        <div class="community-title">
+          <span class="kr-text">새가족 양육반</span>
+          <span class="en-text" style="display:none">New Member Class</span>
+        </div>
+        <div class="community-desc">
+          <span class="kr-text">4주 과정의 '목적이 이끄는 삶' 기반 새가족 성경공부. 신앙 기초와 교회 공동체에 자연스럽게 정착하도록 돕습니다.</span>
+          <span class="en-text" style="display:none">A 4-week orientation based on "Purpose Driven Life." We help new guests find their footing in faith and community.</span>
+        </div>
+      </div>
+    </div>
+    <div class="community-card">
+      <div class="community-icon">🤝</div>
+      <div>
+        <div class="community-title">
+          <span class="kr-text">형제회 (Friendship House)</span>
+          <span class="en-text" style="display:none">Friendship House Ministry</span>
+        </div>
+        <div class="community-desc">
+          <span class="kr-text">미국 지역 교회와 협력하여 캐롤톤 지역 영세민에게 음식, 의류, 유틸리티를 지원합니다. 말씀을 삶으로 실천하는 섬김의 현장입니다.</span>
+          <span class="en-text" style="display:none">Partnering with local churches to provide food, clothing, and utilities to low-income neighbors in Carrollton. Faith in action.</span>
+        </div>
+      </div>
+    </div>
+    <div class="community-card">
+      <div class="community-icon">📚</div>
+      <div>
+        <div class="community-title">
+          <span class="kr-text">청년부 성경공부</span>
+          <span class="en-text" style="display:none">Youth Bible Study</span>
+        </div>
+        <div class="community-desc">
+          <span class="kr-text">매주 주일 예배 후 오후 1:40. 청년 리더가 이끄는 성경공부와 한 주간 신앙 나눔. 다음 세대를 세우는 에덴의 미래입니다.</span>
+          <span class="en-text" style="display:none">Every Sunday at 1:40 PM after service. Youth-led Bible study and faith sharing. Raising the next generation of leaders.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section id="location">
+  <div class="section-tag">
+    <span class="kr-text">오시는 길</span>
+    <span class="en-text" style="display:none">Find Us</span>
+  </div>
+  <h2 class="section-title">
+    <span class="kr-text">에덴교회 찾아오기</span>
+    <span class="en-text" style="display:none">How to Find Us</span>
+  </h2>
+  <div class="location-grid">
+    <div class="map-container">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3352.2!2d-96.9!3d32.97!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2s1401+Carrollton+Pkwy%2C+Carrollton%2C+TX+75010!5e0!3m2!1sen!2sus!4v1"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+    <div class="location-detail">
+      <div class="location-row">
+        <div class="location-row-icon">📍</div>
+        <div>
+          <div class="location-row-label"><span class="kr-text">주소</span><span class="en-text" style="display:none">Address</span></div>
+          <div class="location-row-value">1401 Carrollton Pkwy<br>Carrollton, TX 75010</div>
+        </div>
+      </div>
+      <div class="location-row">
+        <div class="location-row-icon">🕐</div>
+        <div>
+          <div class="location-row-label"><span class="kr-text">주일예배</span><span class="en-text" style="display:none">Sunday Service</span></div>
+          <div class="location-row-value">
+            <span class="kr-text">매주 일요일 오후 12:30</span>
+            <span class="en-text" style="display:none">Every Sunday 12:30 PM</span>
+          </div>
+        </div>
+      </div>
+      <div class="location-row">
+        <div class="location-row-icon">🚗</div>
+        <div>
+          <div class="location-row-label"><span class="kr-text">주차</span><span class="en-text" style="display:none">Parking</span></div>
+          <div class="location-row-value">
+            <span class="kr-text">무료 주차 가능 (달라스 전 지역)</span>
+            <span class="en-text" style="display:none">Free parking available</span>
+          </div>
+        </div>
+      </div>
+      <div class="location-row">
+        <div class="location-row-icon">📞</div>
+        <div>
+          <div class="location-row-label"><span class="kr-text">연락처</span><span class="en-text" style="display:none">Phone</span></div>
+          <div class="location-row-value">214-629-3066</div>
+        </div>
+      </div>
+      <div class="location-row" style="border-bottom: none;">
+        <div class="location-row-icon">✉️</div>
+        <div>
+          <div class="location-row-label">Email</div>
+          <div class="location-row-value">kfbcc@yahoo.com</div>
+        </div>
+      </div>
+      <a href="https://maps.google.com/?q=1401+Carrollton+Pkwy,+Carrollton,+TX+75010"
+         target="_blank" class="directions-btn">
+        🗺️
+        <span class="kr-text">구글 지도로 길 찾기</span>
+        <span class="en-text" style="display:none">Get Directions on Google Maps</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- HEBRONGUIDE BANNER -->
+<div id="hebron">
+  <div>
+    <div class="hebron-badge">
+      <span>Network Partner · Hebronguide</span>
+    </div>
+    <div class="hebron-title">
+      <span class="kr-text">달라스 정착 가이드 — Hebronguide</span>
+      <span class="en-text" style="display:none">Dallas Settlement Guide — Hebronguide</span>
+    </div>
+    <div class="hebron-desc">
+      <span class="kr-text">달라스에 새로 이사 오셨나요? 한인 마트, 병원, 학교, 교회 정보까지 —<br>달라스 한인 정착의 모든 것을 Hebronguide.com/dallas/에서 확인하세요.</span>
+      <span class="en-text" style="display:none">New to Dallas? H-Mart, hospitals, schools, churches and more —<br>Find everything you need to settle in at Hebronguide.com/dallas/</span>
+    </div>
+  </div>
+  <a href="https://hebronguide.com/dallas/" target="_blank" class="hebron-link">
+    <span class="kr-text">달라스 가이드 바로가기 →</span>
+    <span class="en-text" style="display:none">Visit Dallas Guide →</span>
+  </a>
+</div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-tag">
+    <span class="kr-text">연락하기</span>
+    <span class="en-text" style="display:none">Get In Touch</span>
+  </div>
+  <h2 class="section-title">
+    <span class="kr-text">궁금한 것이 있으신가요?</span>
+    <span class="en-text" style="display:none">Questions? We'd Love to Help</span>
+  </h2>
+  <div class="contact-grid">
+    <div>
+      <form class="contact-form" onsubmit="handleSubmit(event)">
+        <div class="form-group">
+          <label>
+            <span class="kr-text">이름</span>
+            <span class="en-text" style="display:none">Name</span>
+          </label>
+          <input type="text" placeholder="홍길동 / Your Name" required>
+        </div>
+        <div class="form-group">
+          <label>
+            <span class="kr-text">연락처 (이메일 또는 전화)</span>
+            <span class="en-text" style="display:none">Email or Phone</span>
+          </label>
+          <input type="text" placeholder="email@example.com">
+        </div>
+        <div class="form-group">
+          <label>
+            <span class="kr-text">문의 유형</span>
+            <span class="en-text" style="display:none">Type</span>
+          </label>
+          <select>
+            <option value="">
+              선택해 주세요 / Please select
+            </option>
+            <option>
+              방문 문의 / First Visit Inquiry
+            </option>
+            <option>
+              기도 요청 / Prayer Request
+            </option>
+            <option>
+              새가족 등록 / New Member
+            </option>
+            <option>
+              일반 문의 / General
+            </option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>
+            <span class="kr-text">메시지</span>
+            <span class="en-text" style="display:none">Message</span>
+          </label>
+          <textarea placeholder="편하게 남겨 주세요 / Feel free to write anything..."></textarea>
+        </div>
+        <button type="submit" class="submit-btn">
+          ✉️
+          <span class="kr-text">보내기</span>
+          <span class="en-text" style="display:none">Send Message</span>
+        </button>
+      </form>
+    </div>
+    <div>
+      <div class="contact-info-list">
+        <div class="contact-info-item">
+          <div class="contact-info-icon">📞</div>
+          <div>
+            <div class="contact-info-label"><span class="kr-text">전화</span><span class="en-text" style="display:none">Phone</span></div>
+            <div class="contact-info-value">214-629-3066</div>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon">✉️</div>
+          <div>
+            <div class="contact-info-label">Email</div>
+            <div class="contact-info-value">kfbcc@yahoo.com</div>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon">📍</div>
+          <div>
+            <div class="contact-info-label"><span class="kr-text">주소</span><span class="en-text" style="display:none">Address</span></div>
+            <div class="contact-info-value">1401 Carrollton Pkwy<br>Carrollton, TX 75010</div>
+          </div>
+        </div>
+      </div>
+      <div class="give-box">
+        <div class="give-title">
+          <span class="kr-text">💚 온라인 헌금 안내</span>
+          <span class="en-text" style="display:none">💚 Online Giving</span>
+        </div>
+        <div class="give-desc">
+          <span class="kr-text">에덴교회는 Zelle을 통해 헌금을 받습니다.<br>헌금은 완전히 자발적이며 교회 사역과 지역 섬김에 사용됩니다.</span>
+          <span class="en-text" style="display:none">Eden Church accepts offerings via Zelle.<br>All giving is voluntary and goes toward ministry and community service.</span>
+        </div>
+        <div class="give-method">Zelle</div>
+        <div style="font-size: 13px; color: rgba(255,255,255,0.65); margin-top: 8px;">
+          <span class="kr-text">계좌 문의: kfbcc@yahoo.com</span>
+          <span class="en-text" style="display:none">For details: kfbcc@yahoo.com</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">에덴교회 달라스</div>
+      <div class="footer-mission">
+        <span class="kr-text">사랑하고 섬기며 예배하는 교회<br>A Church that Loves, Serves, and Worships<br>1401 Carrollton Pkwy, Carrollton, TX 75010<br>남침례단 달라스 지역 연합회 소속 · 2005년 설립</span>
+        <span class="en-text" style="display:none">Eden Church at the Field<br>1401 Carrollton Pkwy, Carrollton, TX 75010<br>Southern Baptist · Dallas Association · Est. 2005</span>
+      </div>
+    </div>
+    <div>
+      <div class="footer-heading">
+        <span class="kr-text">바로가기</span>
+        <span class="en-text" style="display:none">Quick Links</span>
+      </div>
+      <ul class="footer-links">
+        <li><a href="#welcome"><span class="kr-text">목사님 인사말</span><span class="en-text" style="display:none">Pastor's Welcome</span></a></li>
+        <li><a href="#worship"><span class="kr-text">예배 안내</span><span class="en-text" style="display:none">Worship</span></a></li>
+        <li><a href="#firstvisit"><span class="kr-text">처음 오시는 분</span><span class="en-text" style="display:none">First Visit</span></a></li>
+        <li><a href="#vision"><span class="kr-text">비전</span><span class="en-text" style="display:none">Vision</span></a></li>
+        <li><a href="#contact"><span class="kr-text">연락하기</span><span class="en-text" style="display:none">Contact</span></a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-heading">Partner</div>
+      <ul class="footer-links">
+        <li><a href="https://hebronguide.com/dallas/" target="_blank">Hebronguide Dallas</a></li>
+        <li><a href="https://hebronguide.com" target="_blank">Hebronguide.com</a></li>
+        <li><a href="mailto:kfbcc@yahoo.com">kfbcc@yahoo.com</a></li>
+        <li><a href="tel:2146293066">214-629-3066</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>© 2026 Eden Church at the Field · All Rights Reserved</div>
+    <div class="footer-partner">
+      <div class="partner-dot"></div>
+      K-Church911 × Hebronguide Network Partner
+    </div>
+  </div>
+</footer>
+
+<script>
+  // NAV SCROLL
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // LANGUAGE TOGGLE
+  function setLang(lang) {
+    const body = document.body;
+    const btnKo = document.getElementById('btn-ko');
+    const btnEn = document.getElementById('btn-en');
+    if (lang === 'en') {
+      body.classList.add('en-mode');
+      btnEn.classList.add('active');
+      btnKo.classList.remove('active');
+    } else {
+      body.classList.remove('en-mode');
+      btnKo.classList.add('active');
+      btnEn.classList.remove('active');
+    }
+  }
+
+  // FORM SUBMIT
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.submit-btn');
+    const isKo = !document.body.classList.contains('en-mode');
+    btn.textContent = isKo ? '✅ 전송되었습니다!' : '✅ Message Sent!';
+    btn.style.background = '#4A7C2F';
+    setTimeout(() => {
+      btn.innerHTML = isKo ? '✉️ 보내기' : '✉️ Send Message';
+      btn.style.background = '';
+      e.target.reset();
+    }, 3000);
+  }
+
+  // SCROLL REVEAL
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.worship-card, .community-card, .value-item, .faq-item').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
