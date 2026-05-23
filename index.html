@@ -6,6 +6,8 @@
 <meta name="description" content="에덴교회 달라스 — 사랑하고 섬기며 예배하는 교회. 달라스 캐롤톤 한인 교회. Eden Church at the Field, Carrollton TX.">
 <meta name="keywords" content="달라스 한인교회, 캐롤톤 한인교회, Eden Church Dallas, 텍사스 한인교회">
 <title>에덴교회 달라스 | Eden Church at the Field</title>
+<link rel="icon" type="image/png" href="eden-logo.png">
+<link rel="apple-touch-icon" href="eden-logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
 <style>
@@ -15,12 +17,13 @@
     --eden-green-light: #7BAE5A;
     --eden-gold: #C8A94B;
     --eden-gold-light: #E8D08A;
+    --eden-gold-deep: #876818;   /* 밝은 배경 텍스트용 진한 골드 (명암비 4.8:1 확보) */
     --eden-cream: #FAF6EF;
     --eden-warm: #F4EDE0;
     --eden-brown: #6B4E35;
     --eden-dark: #1A1F0F;
     --eden-text: #2C2C2C;
-    --eden-muted: #7A7A6E;
+    --eden-muted: #6A6A5C;       /* 가독성 강화: 명암비 5.0:1 (기존 #7A7A6E는 4.0:1) */
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -35,18 +38,20 @@
   }
 
   /* ── LANGUAGE TOGGLE ── */
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
   .lang-toggle {
-    position: fixed;
-    top: 20px;
-    right: 24px;
-    z-index: 1000;
     display: flex;
     gap: 0;
     border: 1.5px solid var(--eden-gold);
     border-radius: 20px;
     overflow: hidden;
-    backdrop-filter: blur(8px);
+    flex-shrink: 0;
   }
+  nav:not(.scrolled) .lang-toggle { border-color: rgba(255,255,255,0.55); }
   .lang-btn {
     padding: 6px 14px;
     font-size: 12px;
@@ -85,11 +90,29 @@
   }
   .nav-logo {
     display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+  .nav-logo-badge {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  .nav-logo-badge img {
+    height: 44px;
+    width: auto;
+    display: block;
+    filter: drop-shadow(0 1px 3px rgba(0,0,0,0.28));
+  }
+  .nav-logo-text {
+    display: flex;
     flex-direction: column;
     line-height: 1;
   }
-  .nav-logo .kr { font-family: 'Noto Serif KR', serif; font-size: 18px; font-weight: 700; color: var(--eden-green); }
-  .nav-logo .en { font-family: 'Cormorant Garamond', serif; font-size: 11px; font-weight: 400; color: var(--eden-gold); letter-spacing: 0.15em; margin-top: 3px; }
+  .nav-logo .kr { font-family: 'Noto Serif KR', serif; font-size: 18px; font-weight: 700; color: var(--eden-green); transition: color 0.4s; }
+  .nav-logo .en { font-family: 'Cormorant Garamond', serif; font-size: 11px; font-weight: 400; color: var(--eden-gold-deep); letter-spacing: 0.15em; margin-top: 3px; transition: color 0.4s; }
   .nav-links {
     display: flex;
     gap: 32px;
@@ -113,8 +136,15 @@
     background: var(--eden-gold);
     transition: width 0.3s;
   }
-  .nav-links a:hover { color: var(--eden-gold); }
+  .nav-links a:hover { color: var(--eden-gold-deep); }
   .nav-links a:hover::after { width: 100%; }
+
+  /* ── NAV 명암 대비: 스크롤 전(투명 NAV·어두운 hero 위) 밝은 글자 ── */
+  nav:not(.scrolled) .nav-logo .kr { color: #FFFFFF; }
+  nav:not(.scrolled) .nav-logo .en { color: var(--eden-gold-light); }
+  nav:not(.scrolled) .nav-links a { color: rgba(255,255,255,0.92); }
+  nav:not(.scrolled) .nav-links a:hover { color: var(--eden-gold-light); }
+  nav:not(.scrolled) .nav-logo-badge img { filter: drop-shadow(0 1px 4px rgba(0,0,0,0.5)); }
 
   /* ── HERO ── */
   #hero {
@@ -338,8 +368,8 @@
     font-size: 11px;
     letter-spacing: 0.25em;
     text-transform: uppercase;
-    color: var(--eden-gold);
-    font-weight: 600;
+    color: var(--eden-gold-deep);
+    font-weight: 700;
     margin-bottom: 12px;
   }
   .section-title {
@@ -453,16 +483,28 @@
     gap: 12px;
   }
   .pastor-avatar {
-    width: 44px; height: 44px;
+    position: relative;
+    width: 60px; height: 60px;
     background: linear-gradient(135deg, var(--eden-green), var(--eden-green-light));
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
-    font-size: 18px;
+    font-size: 22px;
     font-weight: 700;
     font-family: 'Noto Serif KR', serif;
+    overflow: hidden;
+    flex-shrink: 0;
+    box-shadow: 0 3px 12px rgba(45,80,22,0.22);
+  }
+  .pastor-photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
   }
   .pastor-name-label { font-size: 13px; font-weight: 700; color: var(--eden-green); }
   .pastor-title-label { font-size: 11px; color: var(--eden-muted); margin-top: 1px; }
@@ -500,7 +542,7 @@
   .worship-card-time {
     font-size: 22px;
     font-weight: 700;
-    color: var(--eden-gold);
+    color: var(--eden-gold-deep);
     font-family: 'Cormorant Garamond', serif;
     margin-bottom: 14px;
   }
@@ -630,7 +672,7 @@
   }
   #vision .section-tag { color: var(--eden-gold); }
   #vision .section-title { color: white; margin: 0 auto 20px; }
-  #vision .section-sub { color: rgba(255,255,255,0.65); margin: 0 auto 60px; }
+  #vision .section-sub { color: rgba(255,255,255,0.82); margin: 0 auto 60px; }
   .values-grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -652,7 +694,7 @@
   }
   .value-emoji { font-size: 32px; margin-bottom: 14px; }
   .value-kr { font-family: 'Noto Serif KR', serif; font-size: 20px; font-weight: 700; color: var(--eden-gold); margin-bottom: 6px; }
-  .value-en { font-family: 'Cormorant Garamond', serif; font-size: 14px; color: rgba(255,255,255,0.5); font-style: italic; }
+  .value-en { font-family: 'Cormorant Garamond', serif; font-size: 14px; color: rgba(255,255,255,0.68); font-style: italic; }
   .vision-statement {
     margin-top: 60px;
     padding: 48px;
@@ -733,7 +775,7 @@
     align-items: flex-start;
   }
   .location-row-icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
-  .location-row-label { font-size: 11px; color: var(--eden-gold); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
+  .location-row-label { font-size: 11px; color: var(--eden-gold-deep); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
   .location-row-value { font-size: 14px; color: var(--eden-text); font-weight: 500; margin-top: 4px; line-height: 1.6; }
   .location-row-value .en-text { display: none; }
   .directions-btn {
@@ -779,7 +821,7 @@
     margin-bottom: 12px;
   }
   .hebron-title .en-text { display: none; }
-  .hebron-desc { font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.8; }
+  .hebron-desc { font-size: 14px; color: rgba(255,255,255,0.85); line-height: 1.8; }
   .hebron-desc .en-text { display: none; }
   .hebron-link {
     display: inline-flex;
@@ -863,7 +905,7 @@
     font-size: 18px;
     flex-shrink: 0;
   }
-  .contact-info-label { font-size: 11px; color: var(--eden-gold); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
+  .contact-info-label { font-size: 11px; color: var(--eden-gold-deep); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
   .contact-info-value { font-size: 15px; color: var(--eden-text); font-weight: 500; margin-top: 4px; }
   .give-box {
     background: linear-gradient(135deg, var(--eden-green), var(--eden-green-mid));
@@ -882,7 +924,7 @@
   footer {
     background: var(--eden-dark);
     padding: 60px 80px 32px;
-    color: rgba(255,255,255,0.55);
+    color: rgba(255,255,255,0.7);
   }
   .footer-grid {
     display: grid;
@@ -890,12 +932,17 @@
     gap: 60px;
     margin-bottom: 48px;
   }
-  .footer-logo { font-family: 'Noto Serif KR', serif; font-size: 22px; font-weight: 700; color: white; margin-bottom: 12px; }
-  .footer-mission { font-size: 13px; line-height: 1.9; color: rgba(255,255,255,0.5); }
+  .footer-logo { font-family: 'Noto Serif KR', serif; font-size: 22px; font-weight: 700; color: white; margin-bottom: 12px; display: flex; align-items: center; gap: 12px; }
+  .footer-logo-badge {
+    display: flex; align-items: center;
+    flex-shrink: 0;
+  }
+  .footer-logo-badge img { height: 40px; width: auto; display: block; }
+  .footer-mission { font-size: 13px; line-height: 1.9; color: rgba(255,255,255,0.68); }
   .footer-mission .en-text { display: none; }
-  .footer-heading { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--eden-gold); font-weight: 600; margin-bottom: 16px; }
+  .footer-heading { font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--eden-gold-light); font-weight: 700; margin-bottom: 16px; }
   .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-  .footer-links a { color: rgba(255,255,255,0.55); text-decoration: none; font-size: 13px; transition: color 0.3s; }
+  .footer-links a { color: rgba(255,255,255,0.72); text-decoration: none; font-size: 13px; transition: color 0.3s; }
   .footer-links a:hover { color: var(--eden-gold-light); }
   .footer-bottom {
     border-top: 1px solid rgba(255,255,255,0.08);
@@ -912,7 +959,7 @@
     align-items: center;
     gap: 8px;
     font-size: 12px;
-    color: rgba(255,255,255,0.4);
+    color: rgba(255,255,255,0.6);
   }
   .partner-dot { width: 6px; height: 6px; background: var(--eden-gold); border-radius: 50%; }
 
@@ -946,31 +993,207 @@
     .hero-scroll { left: 24px; }
     #hebron { padding: 40px 24px; }
     footer { padding: 48px 24px 24px; }
+    .eden-chat-panel { width: calc(100vw - 32px); height: calc(100vh - 140px); right: 16px; bottom: 92px; }
   }
+
+  /* ── ANNAE CHATBOT (룰베이스 안내 도우미) ── */
+  .eden-chat-fab {
+    position: fixed;
+    bottom: 24px; right: 24px;
+    width: 62px; height: 62px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--eden-green), var(--eden-green-mid));
+    border: none;
+    cursor: pointer;
+    z-index: 1100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 24px rgba(45,80,22,0.4);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .eden-chat-fab:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 10px 32px rgba(45,80,22,0.5); }
+  .eden-chat-fab svg { width: 28px; height: 28px; }
+  .eden-chat-fab .fab-close { display: none; }
+  .eden-chat-fab.open .fab-chat { display: none; }
+  .eden-chat-fab.open .fab-close { display: block; }
+  .eden-chat-fab::after {
+    content: '';
+    position: absolute;
+    top: 6px; right: 6px;
+    width: 12px; height: 12px;
+    background: var(--eden-gold);
+    border: 2px solid white;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+  .eden-chat-fab.open::after { display: none; }
+
+  .eden-chat-panel {
+    position: fixed;
+    bottom: 100px; right: 24px;
+    width: 372px;
+    height: 540px;
+    background: white;
+    border-radius: 18px;
+    box-shadow: 0 16px 50px rgba(26,31,15,0.32);
+    z-index: 1100;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(20px) scale(0.96);
+    pointer-events: none;
+    transition: opacity 0.3s, transform 0.3s;
+  }
+  .eden-chat-panel.open { opacity: 1; transform: translateY(0) scale(1); pointer-events: auto; }
+
+  .eden-chat-header {
+    background: linear-gradient(135deg, var(--eden-green) 0%, var(--eden-green-mid) 100%);
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .eden-chat-header-logo {
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    background: white;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .eden-chat-header-logo img { width: 26px; height: auto; }
+  .eden-chat-header-title { font-family: 'Noto Serif KR', serif; font-size: 16px; font-weight: 700; color: white; }
+  .eden-chat-header-status { font-size: 11px; color: rgba(255,255,255,0.75); margin-top: 2px; }
+  .eden-chat-header-status::before {
+    content: '●'; color: #7BE495; font-size: 9px; margin-right: 5px;
+  }
+  .eden-chat-close {
+    margin-left: auto;
+    background: rgba(255,255,255,0.15);
+    border: none; cursor: pointer;
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    color: white; font-size: 18px;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s;
+  }
+  .eden-chat-close:hover { background: rgba(255,255,255,0.28); }
+
+  .eden-chat-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px 16px;
+    background: var(--eden-cream);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .eden-chat-msg {
+    max-width: 84%;
+    padding: 11px 15px;
+    font-size: 13.5px;
+    line-height: 1.7;
+    border-radius: 14px;
+    animation: chatFade 0.35s ease both;
+  }
+  @keyframes chatFade { from { opacity:0; transform: translateY(8px); } to { opacity:1; transform: translateY(0); } }
+  .eden-chat-msg.bot {
+    background: white;
+    color: var(--eden-text);
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+    box-shadow: 0 2px 8px rgba(45,80,22,0.07);
+  }
+  .eden-chat-msg.user {
+    background: var(--eden-green);
+    color: white;
+    align-self: flex-end;
+    border-bottom-right-radius: 4px;
+  }
+  .eden-chat-msg a { color: var(--eden-gold-deep); font-weight: 700; }
+  .eden-chat-msg.user a { color: var(--eden-gold-light); }
+
+  .eden-chat-quick {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    padding: 12px 16px;
+    background: white;
+    border-top: 1px solid rgba(45,80,22,0.08);
+  }
+  .eden-chat-chip {
+    background: white;
+    border: 1.4px solid rgba(200,169,75,0.6);
+    color: var(--eden-green);
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 7px 13px;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .eden-chat-chip:hover { background: var(--eden-green); color: white; border-color: var(--eden-green); }
+
+  .eden-chat-input {
+    display: flex;
+    gap: 8px;
+    padding: 12px 16px 16px;
+    background: white;
+  }
+  .eden-chat-input input {
+    flex: 1;
+    border: 1.5px solid rgba(45,80,22,0.18);
+    border-radius: 22px;
+    padding: 10px 16px;
+    font-size: 13px;
+    font-family: 'Noto Sans KR', sans-serif;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .eden-chat-input input:focus { border-color: var(--eden-green-mid); }
+  .eden-chat-send {
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    background: var(--eden-green);
+    border: none; cursor: pointer;
+    color: white; font-size: 16px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.2s;
+  }
+  .eden-chat-send:hover { background: var(--eden-green-mid); }
 </style>
 </head>
 <body>
 
-<!-- LANG TOGGLE -->
-<div class="lang-toggle">
-  <button class="lang-btn active" onclick="setLang('ko')" id="btn-ko">한국어</button>
-  <button class="lang-btn" onclick="setLang('en')" id="btn-en">ENG</button>
-</div>
-
 <!-- NAV -->
 <nav id="navbar">
-  <div class="nav-logo">
-    <span class="kr">에덴교회 달라스</span>
-    <span class="en">Eden Church at the Field</span>
+  <a href="#hero" class="nav-logo">
+    <span class="nav-logo-badge">
+      <img src="eden-logo.png" alt="에덴교회 달라스 로고" width="40" height="40">
+    </span>
+    <span class="nav-logo-text">
+      <span class="kr">에덴교회 달라스</span>
+      <span class="en">Eden Church at the Field</span>
+    </span>
+  </a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#welcome"><span class="kr-text">목사님 인사말</span><span class="en-text" style="display:none">Welcome</span></a></li>
+      <li><a href="#worship"><span class="kr-text">예배 안내</span><span class="en-text" style="display:none">Worship</span></a></li>
+      <li><a href="#firstvisit"><span class="kr-text">처음 오시는 분</span><span class="en-text" style="display:none">First Visit</span></a></li>
+      <li><a href="#vision"><span class="kr-text">비전</span><span class="en-text" style="display:none">Vision</span></a></li>
+      <li><a href="#location"><span class="kr-text">오시는 길</span><span class="en-text" style="display:none">Location</span></a></li>
+      <li><a href="#contact"><span class="kr-text">연락하기</span><span class="en-text" style="display:none">Contact</span></a></li>
+    </ul>
+    <!-- LANG TOGGLE -->
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('ko')" id="btn-ko">한국어</button>
+      <button class="lang-btn" onclick="setLang('en')" id="btn-en">ENG</button>
+    </div>
   </div>
-  <ul class="nav-links">
-    <li><a href="#welcome"><span class="kr-text">목사님 인사말</span><span class="en-text" style="display:none">Welcome</span></a></li>
-    <li><a href="#worship"><span class="kr-text">예배 안내</span><span class="en-text" style="display:none">Worship</span></a></li>
-    <li><a href="#firstvisit"><span class="kr-text">처음 오시는 분</span><span class="en-text" style="display:none">First Visit</span></a></li>
-    <li><a href="#vision"><span class="kr-text">비전</span><span class="en-text" style="display:none">Vision</span></a></li>
-    <li><a href="#location"><span class="kr-text">오시는 길</span><span class="en-text" style="display:none">Location</span></a></li>
-    <li><a href="#contact"><span class="kr-text">연락하기</span><span class="en-text" style="display:none">Contact</span></a></li>
-  </ul>
 </nav>
 
 <!-- HERO -->
@@ -1069,7 +1292,10 @@
         <span class="en-text" style="display:none">Church is not a place reserved for the perfect and the faithful. It is a place where the hurting, the searching, the grateful, and the joyful all come together. You don't need to have it all figured out. If you can come as you are, that is more than enough. Eden Church welcomes you.</span>
       </p>
       <div class="pastor-info">
-        <div class="pastor-avatar">신</div>
+        <div class="pastor-avatar">
+          <img src="pastor.jpg" alt="신종우 목사" class="pastor-photo" onerror="this.remove()">
+          신
+        </div>
         <div>
           <div class="pastor-name-label">신종우 목사 | Rev. Jong-Woo Shin</div>
           <div class="pastor-title-label">
@@ -1580,7 +1806,10 @@
 <footer>
   <div class="footer-grid">
     <div>
-      <div class="footer-logo">에덴교회 달라스</div>
+      <div class="footer-logo">
+        <span class="footer-logo-badge"><img src="eden-logo.png" alt="에덴교회 달라스 로고" width="28" height="28"></span>
+        <span>에덴교회 달라스</span>
+      </div>
       <div class="footer-mission">
         <span class="kr-text">사랑하고 섬기며 예배하는 교회<br>A Church that Loves, Serves, and Worships<br>1401 Carrollton Pkwy, Carrollton, TX 75010<br>남침례단 달라스 지역 연합회 소속 · 2005년 설립</span>
         <span class="en-text" style="display:none">Eden Church at the Field<br>1401 Carrollton Pkwy, Carrollton, TX 75010<br>Southern Baptist · Dallas Association · Est. 2005</span>
@@ -1613,10 +1842,33 @@
     <div>© 2026 Eden Church at the Field · All Rights Reserved</div>
     <div class="footer-partner">
       <div class="partner-dot"></div>
-      K-Church911 × Hebronguide Network Partner
+      NanuriWeb × Hebronguide Network Partner
     </div>
   </div>
 </footer>
+
+<!-- ANNAE CHATBOT (룰베이스 안내 도우미) -->
+<button class="eden-chat-fab" id="edenChatFab" onclick="toggleEdenChat()" aria-label="에덴 안내 도우미 열기">
+  <svg class="fab-chat" viewBox="0 0 24 24" fill="white"><path d="M12 3C6.48 3 2 6.58 2 11c0 2.52 1.46 4.77 3.74 6.25-.13.97-.5 2.3-1.24 3.5 1.6-.27 3.18-.96 4.4-1.78.96.24 1.99.36 3.1.36 5.52 0 10-3.58 10-8S17.52 3 12 3z"/></svg>
+  <svg class="fab-close" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+</button>
+
+<div class="eden-chat-panel" id="edenChatPanel" role="dialog" aria-label="에덴 안내 도우미">
+  <div class="eden-chat-header">
+    <div class="eden-chat-header-logo"><img src="eden-logo.png" alt="에덴교회 달라스"></div>
+    <div>
+      <div class="eden-chat-header-title">에덴 안내 도우미</div>
+      <div class="eden-chat-header-status">온라인 · 한국어 / English</div>
+    </div>
+    <button class="eden-chat-close" onclick="toggleEdenChat()" aria-label="닫기">&times;</button>
+  </div>
+  <div class="eden-chat-body" id="edenChatBody"></div>
+  <div class="eden-chat-quick" id="edenChatQuick"></div>
+  <form class="eden-chat-input" onsubmit="edenChatSubmit(event)">
+    <input type="text" id="edenChatInput" placeholder="궁금한 점을 입력하세요…" autocomplete="off">
+    <button type="submit" class="eden-chat-send" aria-label="보내기">&#10148;</button>
+  </form>
+</div>
 
 <script>
   // NAV SCROLL
@@ -1670,6 +1922,134 @@
     el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
     observer.observe(el);
   });
+
+  // ── ANNAE CHATBOT (룰베이스 안내 도우미) ──
+  const edenChatTopics = {
+    worship: {
+      label: { ko: '🕐 예배시간', en: '🕐 Worship' },
+      answer: {
+        ko: '주일예배는 <b>매주 일요일 오후 12:30</b>에 드립니다. 🕐<br>처음 오시는 분도 편하게 함께 예배하실 수 있습니다.',
+        en: 'Sunday Worship is <b>every Sunday at 12:30 PM</b>. 🕐<br>First-time visitors are warmly welcome to worship with us.'
+      }
+    },
+    location: {
+      label: { ko: '📍 오시는 길', en: '📍 Location' },
+      answer: {
+        ko: '에덴교회 달라스는 <b>1401 Carrollton Pkwy, Carrollton, TX 75010</b>에 있습니다. 📍<br>구글 지도에서 <a href="https://maps.google.com/?q=Eden+Church+at+the+Field+Carrollton+TX" target="_blank">"Eden Church at the Field"</a>로 검색하세요.',
+        en: 'Eden Church Dallas is located at <b>1401 Carrollton Pkwy, Carrollton, TX 75010</b>. 📍<br>Search <a href="https://maps.google.com/?q=Eden+Church+at+the+Field+Carrollton+TX" target="_blank">"Eden Church at the Field"</a> on Google Maps.'
+      }
+    },
+    first: {
+      label: { ko: '😊 처음 오시는 분', en: '😊 First Visit' },
+      answer: {
+        ko: '처음 오셔도 편안하게 환영합니다. 😊<br>특별한 준비나 격식은 필요 없고, 편한 옷차림으로 오시면 됩니다. 예배 후 따뜻한 교제 시간도 있습니다.',
+        en: 'First-time visitors are warmly welcome. 😊<br>No special preparation or dress code — simply come as you are. There is a warm fellowship time after worship.'
+      }
+    },
+    pastor: {
+      label: { ko: '🙏 목사님 소개', en: '🙏 Our Pastor' },
+      answer: {
+        ko: '담임 <b>신종우 목사님</b>(Rev. Jong-Woo Shin, Ph.D., MBTS)이 섬기고 있습니다. 🙏<br>"믿음이 준비되지 않아도 괜찮습니다. 지금 함께 할 수 있다면, 그것만으로 충분합니다."',
+        en: 'Our Senior Pastor is <b>Rev. Jong-Woo Shin</b> (Ph.D., MBTS). 🙏<br>"You don\'t need to have it all figured out. If you can come as you are, that is more than enough."'
+      }
+    },
+    giving: {
+      label: { ko: '💚 헌금 안내', en: '💚 Giving' },
+      answer: {
+        ko: '에덴교회는 <b>Zelle</b>을 통해 헌금을 받습니다. 💚<br>헌금은 완전히 자발적이며 교회 사역과 지역 섬김에 쓰입니다. 계좌 문의: <a href="mailto:kfbcc@yahoo.com">kfbcc@yahoo.com</a>',
+        en: 'Eden Church accepts offerings via <b>Zelle</b>. 💚<br>All giving is voluntary and goes toward ministry and community service. For details: <a href="mailto:kfbcc@yahoo.com">kfbcc@yahoo.com</a>'
+      }
+    },
+    contact: {
+      label: { ko: '📞 연락처', en: '📞 Contact' },
+      answer: {
+        ko: '전화: <a href="tel:2146293066">214-629-3066</a><br>이메일: <a href="mailto:kfbcc@yahoo.com">kfbcc@yahoo.com</a><br>📞 언제든 편하게 연락 주세요.',
+        en: 'Phone: <a href="tel:2146293066">214-629-3066</a><br>Email: <a href="mailto:kfbcc@yahoo.com">kfbcc@yahoo.com</a><br>📞 Feel free to reach out anytime.'
+      }
+    }
+  };
+  const edenChatKeywords = {
+    worship:  ['예배','시간','주일','worship','service','sunday'],
+    location: ['주소','오시','길','위치','어디','지도','location','address','map','direction'],
+    first:    ['처음','새가족','방문','first','visit','new','newcomer'],
+    pastor:   ['목사','담임','신종우','pastor','minister'],
+    giving:   ['헌금','봉헌','후원','giving','offering','zelle','donate'],
+    contact:  ['전화','연락','이메일','메일','contact','phone','email','call']
+  };
+  const edenChatGreeting = {
+    ko: '안녕하세요! 👋 에덴교회 달라스에 오신 것을 환영합니다.<br>궁금하신 점을 아래 버튼에서 골라주시거나 직접 입력해 주세요.',
+    en: 'Hello! 👋 Welcome to Eden Church Dallas.<br>Choose a topic below or type your question anytime.'
+  };
+  const edenChatFallback = {
+    ko: '죄송합니다, 그 질문은 제가 바로 답하기 어렵습니다. 🙏<br>아래 버튼을 눌러보시거나 <a href="tel:2146293066">214-629-3066</a> · <a href="mailto:kfbcc@yahoo.com">kfbcc@yahoo.com</a>으로 문의해 주세요.',
+    en: 'Sorry, I can\'t answer that directly. 🙏<br>Please try the buttons below, or contact <a href="tel:2146293066">214-629-3066</a> · <a href="mailto:kfbcc@yahoo.com">kfbcc@yahoo.com</a>.'
+  };
+  let edenChatStarted = false;
+
+  function edenLang() { return document.body.classList.contains('en-mode') ? 'en' : 'ko'; }
+
+  function edenChatAddMsg(html, who) {
+    const body = document.getElementById('edenChatBody');
+    const msg = document.createElement('div');
+    msg.className = 'eden-chat-msg ' + who;
+    msg.innerHTML = html;
+    body.appendChild(msg);
+    body.scrollTop = body.scrollHeight;
+  }
+
+  function edenChatRenderChips() {
+    const lang = edenLang();
+    const quick = document.getElementById('edenChatQuick');
+    quick.innerHTML = '';
+    Object.keys(edenChatTopics).forEach(key => {
+      const chip = document.createElement('button');
+      chip.className = 'eden-chat-chip';
+      chip.type = 'button';
+      chip.textContent = edenChatTopics[key].label[lang];
+      chip.onclick = () => edenChatAnswer(key);
+      quick.appendChild(chip);
+    });
+  }
+
+  function edenChatAnswer(key) {
+    const lang = edenLang();
+    edenChatAddMsg(edenChatTopics[key].label[lang].replace(/^[^\s]+\s/, ''), 'user');
+    setTimeout(() => edenChatAddMsg(edenChatTopics[key].answer[lang], 'bot'), 320);
+  }
+
+  function edenChatSubmit(e) {
+    e.preventDefault();
+    const input = document.getElementById('edenChatInput');
+    const text = input.value.trim();
+    if (!text) return;
+    edenChatAddMsg(text, 'user');
+    input.value = '';
+    const lower = text.toLowerCase();
+    let matched = null;
+    for (const key in edenChatKeywords) {
+      if (edenChatKeywords[key].some(kw => lower.includes(kw))) { matched = key; break; }
+    }
+    const lang = edenLang();
+    setTimeout(() => {
+      edenChatAddMsg(matched ? edenChatTopics[matched].answer[lang] : edenChatFallback[lang], 'bot');
+    }, 350);
+  }
+
+  function toggleEdenChat() {
+    const panel = document.getElementById('edenChatPanel');
+    const fab = document.getElementById('edenChatFab');
+    const isOpen = panel.classList.toggle('open');
+    fab.classList.toggle('open', isOpen);
+    if (isOpen) {
+      const input = document.getElementById('edenChatInput');
+      input.placeholder = edenLang() === 'en' ? 'Type your question…' : '궁금한 점을 입력하세요…';
+      edenChatRenderChips();
+      if (!edenChatStarted) {
+        edenChatStarted = true;
+        setTimeout(() => edenChatAddMsg(edenChatGreeting[edenLang()], 'bot'), 200);
+      }
+    }
+  }
 </script>
 </body>
 </html>
