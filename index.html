@@ -1035,19 +1035,22 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     flex-shrink: 0;
   }
-  .hebron-qr-img {
-    width: 110px; height: 110px;
+  .hebron-qr-box {
     background: white;
-    border-radius: 8px;
-    padding: 6px;
+    padding: 10px;
+    border-radius: 12px;
+    display: inline-block;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+  }
+  .hebron-qr-box canvas {
     display: block;
   }
   .hebron-qr-label {
-    font-size: 11px;
-    color: rgba(255,255,255,0.55);
+    font-size: 12px;
+    color: rgba(255,255,255,0.6);
     text-align: center;
     letter-spacing: 0.05em;
   }
@@ -2131,12 +2134,12 @@
   <div style="display:flex; align-items:center; gap:24px; flex-shrink:0;">
     <!-- QR 코드 -->
     <div class="hebron-qr-wrap">
-      <div style="background:#fff;padding:8px;border-radius:10px;display:inline-block;">
+      <div class="hebron-qr-box">
         <canvas id="hg-dallas-qr"></canvas>
       </div>
       <div class="hebron-qr-label">
-        <span class="kr-text">카메라로 스캔하세요</span>
-        <span class="en-text" style="display:none">Scan to open</span>
+        <span class="kr-text">📱 카메라로 스캔하세요</span>
+        <span class="en-text" style="display:none">📱 Scan to open</span>
       </div>
     </div>
     <a href="https://hebronguide.com/dallas/" target="_blank" class="hebron-link">
@@ -2343,10 +2346,21 @@
     document.getElementById('hg-dallas-qr'),
     'https://hebronguide.com/dallas/',
     {
-      width: 110,
+      width: 160,
       margin: 2,
       errorCorrectionLevel: 'H',
       color: { dark: '#0D2137', light: '#ffffff' }
+    },
+    function(error) {
+      if (error) {
+        // fallback: 외부 API 이미지로 대체
+        var img = document.createElement('img');
+        img.src = 'https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://hebronguide.com/dallas/&color=0D2137&qzone=2';
+        img.width = 160; img.height = 160;
+        img.style.display = 'block';
+        var canvas = document.getElementById('hg-dallas-qr');
+        canvas.parentNode.replaceChild(img, canvas);
+      }
     }
   );
 
