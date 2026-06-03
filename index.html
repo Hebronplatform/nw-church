@@ -8,8 +8,7 @@
 <title>에덴교회 달라스 | Eden Church at the Field</title>
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 56 72' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='16' width='34' height='56' rx='10' fill='%23873317'/%3E%3Crect x='22' y='0' width='34' height='72' rx='10' fill='%23873317'/%3E%3Crect x='24' y='4' width='8' height='23' rx='2' fill='white'/%3E%3Crect x='14' y='15' width='28' height='8' rx='2' fill='white'/%3E%3C/svg%3E">
 <link rel="apple-touch-icon" href="eden-logo.png">
-<!-- QR Code 생성 라이브러리 (브라우저 전용) -->
-<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+<!-- QR Code: 정적 이미지 (모든 기기 호환) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
 <style>
@@ -2139,7 +2138,10 @@
     <!-- QR 코드 -->
     <div class="hebron-qr-wrap">
       <div class="hebron-qr-box">
-        <div id="hg-dallas-qr"></div>
+        <img src="hebronguide-dallas-qr.png"
+             alt="HebronGuide 달라스 QR 코드"
+             width="160" height="160"
+             style="display:block;width:160px;height:160px;">
       </div>
       <div class="hebron-qr-label">
         <span class="kr-text">📱 카메라로 스캔하세요</span>
@@ -2345,15 +2347,7 @@
 
 <script>
   // NAV SCROLL
-  // ── HebronGuide 달라스 QR 코드 생성 (qrcodejs) ──
-  new QRCode(document.getElementById('hg-dallas-qr'), {
-    text: 'https://hebronguide.com/dallas/',
-    width: 160,
-    height: 160,
-    colorDark: '#0D2137',
-    colorLight: '#ffffff',
-    correctLevel: QRCode.CorrectLevel.H
-  });
+  // QR 코드: 정적 이미지 사용 (모든 기기 호환)
 
   window.addEventListener('scroll', () => {
     document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
