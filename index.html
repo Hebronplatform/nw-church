@@ -6,7 +6,7 @@
 <meta name="description" content="에덴교회 달라스 — 사랑하고 섬기며 예배하는 교회. 달라스 캐롤톤 한인 교회. Eden Church at the Field, Carrollton TX.">
 <meta name="keywords" content="달라스 한인교회, 캐롤톤 한인교회, Eden Church Dallas, 텍사스 한인교회">
 <title>에덴교회 달라스 | Eden Church at the Field</title>
-<link rel="icon" type="image/png" href="eden-logo.png">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 56 72' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='16' width='34' height='56' rx='10' fill='%23873317'/%3E%3Crect x='22' y='0' width='34' height='72' rx='10' fill='%23873317'/%3E%3Crect x='24' y='4' width='8' height='23' rx='2' fill='white'/%3E%3Crect x='14' y='15' width='28' height='8' rx='2' fill='white'/%3E%3C/svg%3E">
 <link rel="apple-touch-icon" href="eden-logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
@@ -92,7 +92,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 12px;
+    gap: 11px;
     text-decoration: none;
   }
   .nav-logo-badge {
@@ -101,10 +101,9 @@
     flex-shrink: 0;
   }
   .nav-logo-badge img {
-    height: 44px;
+    height: 52px;
     width: auto;
     display: block;
-    filter: drop-shadow(0 1px 3px rgba(0,0,0,0.28));
   }
   .nav-logo-text {
     display: flex;
@@ -154,13 +153,23 @@
     align-items: center;
     overflow: hidden;
   }
+  .hero-church-photo {
+    position: absolute;
+    inset: 0;
+    background-image: url('church.avif');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+  }
   .hero-bg {
     position: absolute;
     inset: 0;
     background:
-      radial-gradient(ellipse 80% 60% at 60% 40%, rgba(74,124,47,0.18) 0%, transparent 65%),
-      radial-gradient(ellipse 50% 70% at 20% 80%, rgba(200,169,75,0.12) 0%, transparent 55%),
-      linear-gradient(160deg, #1A1F0F 0%, #2D5016 40%, #3D6B20 70%, #4A7C2F 100%);
+      radial-gradient(ellipse 80% 60% at 60% 40%, rgba(74,124,47,0.22) 0%, transparent 65%),
+      linear-gradient(160deg,
+        rgba(26,31,15,0.90) 0%,
+        rgba(45,80,22,0.84) 45%,
+        rgba(45,80,22,0.72) 100%);
   }
   .hero-pattern {
     position: absolute;
@@ -393,51 +402,66 @@
   #welcome {
     background: var(--eden-cream);
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 72px;
     align-items: center;
   }
   .welcome-image-side {
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
-  .welcome-cross-art {
-    width: 100%;
-    max-width: 400px;
-    aspect-ratio: 1;
+  /* 목사님 사진 카드 */
+  .pastor-portrait-wrap {
     position: relative;
+    width: 100%;
+    max-width: 340px;
     margin: 0 auto;
   }
-  .cross-outer {
-    position: absolute;
-    inset: 0;
-    border: 2px solid rgba(200,169,75,0.25);
-    border-radius: 50%;
+  .pastor-portrait-img {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    object-position: center top;
+    border-radius: 12px 12px 0 0;
+    display: block;
+    box-shadow: 0 12px 48px rgba(45,80,22,0.18);
   }
-  .cross-mid {
-    position: absolute;
-    inset: 15%;
-    border: 1.5px solid rgba(200,169,75,0.4);
-    border-radius: 50%;
-  }
-  .cross-inner {
-    position: absolute;
-    inset: 30%;
-    background: linear-gradient(135deg, var(--eden-green), var(--eden-green-mid));
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .cross-symbol {
+  .pastor-portrait-tag {
+    background: var(--eden-green);
     color: white;
-    font-size: 48px;
-    line-height: 1;
-    font-weight: 100;
+    padding: 16px 24px;
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0 8px 24px rgba(45,80,22,0.18);
   }
-  .cross-orbit {
+  .pastor-portrait-tag-name {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .pastor-portrait-tag-title {
+    font-size: 12px;
+    opacity: 0.75;
+    letter-spacing: 0.05em;
+  }
+  .pastor-portrait-tag-title .en-text { display: none; }
+  /* 황금 장식선 */
+  .pastor-portrait-wrap::before {
+    content: '';
     position: absolute;
-    inset: 0;
-    animation: rotateSlow 20s linear infinite;
+    top: -8px; left: -8px;
+    right: 8px; bottom: -8px;
+    border: 1.5px solid rgba(200,169,75,0.35);
+    border-radius: 14px;
+    pointer-events: none;
+  }
+  /* 구 cross-art 스타일 (더 이상 사용 안 하지만 참조용) */
+  .welcome-cross-art,
+  .cross-outer, .cross-mid, .cross-inner,
+  .cross-symbol, .cross-orbit, .cross-orbit-dot {
+    display: none;
   }
   .cross-orbit-dot {
     position: absolute;
@@ -794,6 +818,125 @@
   }
   .directions-btn:hover { background: var(--eden-green-mid); transform: translateY(-2px); }
 
+  /* ── TESTIMONIALS ── */
+  #testimonials { background: white; }
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin-top: 56px;
+  }
+  .testimonial-card {
+    background: var(--eden-cream);
+    border-radius: 8px;
+    padding: 32px;
+    position: relative;
+    border: 1px solid rgba(45,80,22,0.07);
+    transition: box-shadow 0.3s;
+  }
+  .testimonial-card:hover { box-shadow: 0 8px 32px rgba(45,80,22,0.1); }
+  .testimonial-quote-mark {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 64px;
+    color: rgba(45,80,22,0.1);
+    line-height: 1;
+    position: absolute;
+    top: 16px; right: 20px;
+  }
+  .testimonial-stars { color: var(--eden-gold); font-size: 13px; margin-bottom: 14px; letter-spacing: 2px; }
+  .testimonial-text { font-size: 13.5px; color: var(--eden-muted); line-height: 1.9; margin-bottom: 20px; }
+  .testimonial-author { display: flex; align-items: center; gap: 12px; }
+  .testimonial-avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--eden-green);
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .testimonial-name { font-size: 14px; font-weight: 700; color: var(--eden-green); }
+  .testimonial-info { font-size: 12px; color: var(--eden-muted); margin-top: 2px; }
+
+  /* ── MINISTRY DEPARTMENTS ── */
+  .dept-section { margin-top: 56px; padding-top: 48px; border-top: 1px solid rgba(45,80,22,0.1); }
+  .dept-section-title {
+    font-size: 16px; font-weight: 700; color: var(--eden-green);
+    margin-bottom: 24px; text-align: center;
+  }
+  .dept-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+  }
+  .dept-card {
+    background: white;
+    border: 1px solid rgba(45,80,22,0.1);
+    border-radius: 10px;
+    padding: 20px 14px;
+    text-align: center;
+    transition: all 0.25s;
+  }
+  .dept-card:hover { border-color: var(--eden-green); transform: translateY(-3px); box-shadow: 0 6px 20px rgba(45,80,22,0.1); }
+  .dept-card-icon { font-size: 28px; margin-bottom: 10px; }
+  .dept-card-name { font-size: 13px; font-weight: 700; color: var(--eden-green); margin-bottom: 4px; }
+  .dept-card-name .en-text { display: none; }
+  .dept-card-desc { font-size: 11px; color: var(--eden-muted); line-height: 1.5; }
+  .dept-card-desc .en-text { display: none; }
+
+  /* ── REASSURE BOX ── */
+  .reassure-box {
+    margin-top: 48px;
+    background: var(--eden-green);
+    border-radius: 12px;
+    padding: 36px 40px;
+    color: white;
+  }
+  .reassure-title {
+    font-size: 18px; font-weight: 700; color: white;
+    margin-bottom: 24px;
+  }
+  .reassure-list { display: flex; flex-direction: column; gap: 14px; }
+  .reassure-item { display: flex; align-items: flex-start; gap: 14px; }
+  .reassure-check {
+    width: 22px; height: 22px; border-radius: 50%;
+    background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.5);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; color: white; flex-shrink: 0; margin-top: 2px;
+  }
+  .reassure-item-text { font-size: 14px; line-height: 1.6; }
+  .reassure-item-text strong { display: block; margin-bottom: 2px; }
+  .reassure-item-text small { font-size: 12px; opacity: 0.7; }
+  .reassure-item-text .en-text { display: none; }
+  .reassure-cta {
+    margin-top: 28px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--eden-gold);
+    color: var(--eden-dark);
+    padding: 13px 28px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    transition: all 0.3s;
+  }
+  .reassure-cta:hover { background: var(--eden-gold-light); transform: translateY(-2px); }
+
+  /* ── FORM: 거주지역·방문일자 추가 ── */
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  @media (max-width: 900px) {
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .dept-grid { grid-template-columns: repeat(3, 1fr); }
+    .form-row { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .dept-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
   /* ── HEBRONGUIDE BANNER ── */
   #hebron {
     background: linear-gradient(135deg, #1A3A5C 0%, #0D2640 100%);
@@ -981,6 +1124,8 @@
   @media (max-width: 768px) {
     .nav-links { display: none; }
     #welcome, #firstvisit, #location, .contact-grid { grid-template-columns: 1fr; }
+    .pastor-portrait-wrap { max-width: 260px; }
+    .welcome-image-side { margin-bottom: 8px; }
     .worship-grid { grid-template-columns: 1fr; }
     .values-grid { grid-template-columns: repeat(2, 1fr); }
     .community-grid { grid-template-columns: 1fr; }
@@ -1172,7 +1317,8 @@
 <nav id="navbar">
   <a href="#hero" class="nav-logo">
     <span class="nav-logo-badge">
-      <img src="eden-logo.png" alt="에덴교회 달라스 로고" width="40" height="40">
+      <!-- 에덴교회 원본 로고 PNG -->
+      <img src="eden-logo.png" alt="에덴교회 달라스 로고">
     </span>
     <span class="nav-logo-text">
       <span class="kr">에덴교회 달라스</span>
@@ -1198,6 +1344,7 @@
 
 <!-- HERO -->
 <section id="hero">
+  <div class="hero-church-photo"></div>
   <div class="hero-bg"></div>
   <div class="hero-pattern"></div>
   <div class="hero-cross"></div>
@@ -1260,20 +1407,16 @@
 <!-- WELCOME -->
 <section id="welcome">
   <div class="welcome-image-side">
-    <div class="welcome-cross-art">
-      <div class="cross-outer"></div>
-      <div class="cross-mid"></div>
-      <div class="cross-inner">
-        <div class="cross-symbol">✝</div>
-      </div>
-      <div class="cross-orbit">
-        <div class="cross-orbit-dot"></div>
-      </div>
-    </div>
-    <div style="text-align:center; margin-top: 20px;">
-      <div style="font-family:'Noto Serif KR',serif; font-size:13px; color:var(--eden-muted); letter-spacing:0.1em;">
-        <span class="kr-text">십자가를 중심으로 하나되는 공동체</span>
-        <span class="en-text" style="display:none">One Community Centered on the Cross</span>
+    <div class="pastor-portrait-wrap">
+      <img src="pastor.jpg"
+           alt="신종우 목사 | Rev. Jong-Woo Shin"
+           class="pastor-portrait-img">
+      <div class="pastor-portrait-tag">
+        <div class="pastor-portrait-tag-name">신종우 목사 | Rev. Jong-Woo Shin</div>
+        <div class="pastor-portrait-tag-title">
+          <span class="kr-text">에덴교회 달라스 담임목사 · Ph.D., MBTS</span>
+          <span class="en-text" style="display:none">Senior Pastor, Eden Church Dallas · Ph.D., MBTS</span>
+        </div>
       </div>
     </div>
   </div>
@@ -1481,6 +1624,54 @@
         <span class="en-text" style="display:none">📩 Contact us before visiting →</span>
       </a>
     </div>
+    <!-- 방문 안심 체크리스트 -->
+    <div class="reassure-box">
+      <div class="reassure-title">
+        <span class="kr-text">🛡 이런 걱정은 안 하셔도 됩니다</span>
+        <span class="en-text" style="display:none">🛡 Don't Worry About These Things</span>
+      </div>
+      <div class="reassure-list">
+        <div class="reassure-item">
+          <div class="reassure-check">✓</div>
+          <div class="reassure-item-text">
+            <strong><span class="kr-text">헌금을 강요하지 않습니다</span><span class="en-text" style="display:none">No pressure to give offerings</span></strong>
+            <small><span class="kr-text">헌금은 완전히 자유 의사입니다</span><span class="en-text" style="display:none">Giving is entirely voluntary</span></small>
+          </div>
+        </div>
+        <div class="reassure-item">
+          <div class="reassure-check">✓</div>
+          <div class="reassure-item-text">
+            <strong><span class="kr-text">예배 순서를 몰라도 됩니다</span><span class="en-text" style="display:none">No need to know the worship order</span></strong>
+            <small><span class="kr-text">안내지를 드립니다. 따라오시면 됩니다</span><span class="en-text" style="display:none">We provide a bulletin. Just follow along</span></small>
+          </div>
+        </div>
+        <div class="reassure-item">
+          <div class="reassure-check">✓</div>
+          <div class="reassure-item-text">
+            <strong><span class="kr-text">아무도 판단하지 않습니다</span><span class="en-text" style="display:none">Nobody will judge you</span></strong>
+            <small><span class="kr-text">어떤 배경이어도 환영합니다</span><span class="en-text" style="display:none">Whatever your background, you're welcome</span></small>
+          </div>
+        </div>
+        <div class="reassure-item">
+          <div class="reassure-check">✓</div>
+          <div class="reassure-item-text">
+            <strong><span class="kr-text">강압적인 전도가 없습니다</span><span class="en-text" style="display:none">No aggressive evangelism</span></strong>
+            <small><span class="kr-text">스스로 결정할 시간을 드립니다</span><span class="en-text" style="display:none">We give you time to decide for yourself</span></small>
+          </div>
+        </div>
+        <div class="reassure-item">
+          <div class="reassure-check">✓</div>
+          <div class="reassure-item-text">
+            <strong><span class="kr-text">자녀 데리고 오셔도 됩니다</span><span class="en-text" style="display:none">Bring your children</span></strong>
+            <small><span class="kr-text">어린이 돌봄을 제공합니다</span><span class="en-text" style="display:none">Dedicated children's care is provided</span></small>
+          </div>
+        </div>
+      </div>
+      <a href="#contact" class="reassure-cta">
+        <span class="kr-text">📩 이번 주일 방문 신청하기 →</span>
+        <span class="en-text" style="display:none">📩 Plan Your Visit This Sunday →</span>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -1603,6 +1794,104 @@
   </div>
 </section>
 
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="section-tag">
+    <span class="kr-text">성도 이야기</span>
+    <span class="en-text" style="display:none">Community Stories</span>
+  </div>
+  <h2 class="section-title">
+    <span class="kr-text">에덴교회와 함께한<br>달라스 생활</span>
+    <span class="en-text" style="display:none">Life in Dallas<br>with Eden Church</span>
+  </h2>
+  <p class="section-sub">
+    <span class="kr-text">처음엔 낯설었지만, 지금은 가족이 됐습니다.</span>
+    <span class="en-text" style="display:none">It felt unfamiliar at first, but now it feels like family.</span>
+  </p>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="testimonial-quote-mark">"</div>
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">
+        <span class="kr-text">삼성 주재원으로 달라스에 처음 왔을 때 정말 막막했어요. 에덴교회에서 아이 학교 정보부터 병원, 마트까지 다 알게 됐습니다. 교회가 단순한 예배 공간이 아니라 진짜 가족 같은 곳이에요.</span>
+        <span class="en-text" style="display:none">When we first arrived as Samsung expats, everything felt overwhelming. At Eden Church, we learned about schools, hospitals, and everything we needed. It's not just a worship space — it's like a real family.</span>
+      </p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">김</div>
+        <div>
+          <div class="testimonial-name"><span class="kr-text">김○○ 집사</span><span class="en-text" style="display:none">Deacon Kim</span></div>
+          <div class="testimonial-info"><span class="kr-text">Plano · 삼성전자 주재원 가정</span><span class="en-text" style="display:none">Plano · Samsung expat family</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-quote-mark">"</div>
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">
+        <span class="kr-text">교회라는 곳이 낯설고 부담스러웠는데, 에덴교회는 달랐어요. 아무도 강요하지 않고, 편하게 쉬어갈 수 있는 분위기였어요. 지금은 목장 활동이 제 달라스 생활의 가장 큰 즐거움이 됐습니다.</span>
+        <span class="en-text" style="display:none">Church always felt pressuring, but Eden was different. Nobody forces anything — you can just rest comfortably. Now, small group activities are the greatest joy of my Dallas life.</span>
+      </p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">이</div>
+        <div>
+          <div class="testimonial-name"><span class="kr-text">이○○ 권사</span><span class="en-text" style="display:none">Elder Lee</span></div>
+          <div class="testimonial-info"><span class="kr-text">Frisco · 이민 3년차</span><span class="en-text" style="display:none">Frisco · 3 years in Dallas</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-quote-mark">"</div>
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">
+        <span class="kr-text">유학생으로 혼자 달라스에 왔을 때 정말 외로웠어요. 에덴교회 청년부를 통해 진짜 친구들을 만났고, 신앙도 생겼습니다. 에덴교회 문을 두드린 게 달라스에서 한 가장 잘한 선택이에요.</span>
+        <span class="en-text" style="display:none">I was so lonely when I came to Dallas as an international student. Through Eden Church's young adults, I found real friends and my faith. Walking into Eden Church was the best decision I made in Dallas.</span>
+      </p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">박</div>
+        <div>
+          <div class="testimonial-name"><span class="kr-text">박○○ 형제</span><span class="en-text" style="display:none">Brother Park</span></div>
+          <div class="testimonial-info"><span class="kr-text">Richardson · UT Dallas 유학생</span><span class="en-text" style="display:none">Richardson · UT Dallas student</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 부서 안내 -->
+  <div class="dept-section">
+    <div class="dept-section-title">
+      <span class="kr-text">📋 부서 안내</span>
+      <span class="en-text" style="display:none">📋 Ministries</span>
+    </div>
+    <div class="dept-grid">
+      <div class="dept-card">
+        <div class="dept-card-icon">👶</div>
+        <div class="dept-card-name"><span class="kr-text">어린이부</span><span class="en-text" style="display:none">Children</span></div>
+        <div class="dept-card-desc"><span class="kr-text">주일 동시 운영</span><span class="en-text" style="display:none">Sundays concurrent</span></div>
+      </div>
+      <div class="dept-card">
+        <div class="dept-card-icon">📚</div>
+        <div class="dept-card-name"><span class="kr-text">청소년부</span><span class="en-text" style="display:none">Youth</span></div>
+        <div class="dept-card-desc"><span class="kr-text">중·고등부 사역</span><span class="en-text" style="display:none">Middle & High School</span></div>
+      </div>
+      <div class="dept-card">
+        <div class="dept-card-icon">🎵</div>
+        <div class="dept-card-name"><span class="kr-text">청년부</span><span class="en-text" style="display:none">Young Adults</span></div>
+        <div class="dept-card-desc"><span class="kr-text">20–30대 공동체</span><span class="en-text" style="display:none">20s–30s community</span></div>
+      </div>
+      <div class="dept-card">
+        <div class="dept-card-icon">🏡</div>
+        <div class="dept-card-name"><span class="kr-text">목장 (소그룹)</span><span class="en-text" style="display:none">Small Groups</span></div>
+        <div class="dept-card-desc"><span class="kr-text">가정별 모임</span><span class="en-text" style="display:none">Home-based groups</span></div>
+      </div>
+      <div class="dept-card">
+        <div class="dept-card-icon">🌱</div>
+        <div class="dept-card-name"><span class="kr-text">새가족부</span><span class="en-text" style="display:none">New Members</span></div>
+        <div class="dept-card-desc"><span class="kr-text">정착반 & 멘토링</span><span class="en-text" style="display:none">Orientation & Mentoring</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- LOCATION -->
 <section id="location">
   <div class="section-tag">
@@ -1713,36 +2002,51 @@
             <span class="kr-text">이름</span>
             <span class="en-text" style="display:none">Name</span>
           </label>
-          <input type="text" placeholder="홍길동 / Your Name" required>
+          <input type="text" name="name" placeholder="홍길동 / Your Name" required>
         </div>
         <div class="form-group">
           <label>
             <span class="kr-text">연락처 (이메일 또는 전화)</span>
             <span class="en-text" style="display:none">Email or Phone</span>
           </label>
-          <input type="text" placeholder="email@example.com">
+          <input type="text" name="contact" placeholder="email@example.com">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>
+              <span class="kr-text">거주 지역</span>
+              <span class="en-text" style="display:none">Your Area</span>
+            </label>
+            <select name="area">
+              <option value="">선택 / Select</option>
+              <option>Plano</option>
+              <option>Frisco</option>
+              <option>Allen</option>
+              <option>McKinney</option>
+              <option>Richardson</option>
+              <option>Carrollton</option>
+              <option>Dallas (Other)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>
+              <span class="kr-text">방문 예정 일자</span>
+              <span class="en-text" style="display:none">Planned Visit Date</span>
+            </label>
+            <input type="date" name="visitDate">
+          </div>
         </div>
         <div class="form-group">
           <label>
             <span class="kr-text">문의 유형</span>
             <span class="en-text" style="display:none">Type</span>
           </label>
-          <select>
-            <option value="">
-              선택해 주세요 / Please select
-            </option>
-            <option>
-              방문 문의 / First Visit Inquiry
-            </option>
-            <option>
-              기도 요청 / Prayer Request
-            </option>
-            <option>
-              새가족 등록 / New Member
-            </option>
-            <option>
-              일반 문의 / General
-            </option>
+          <select name="type">
+            <option value="">선택해 주세요 / Please select</option>
+            <option>방문 문의 / First Visit Inquiry</option>
+            <option>기도 요청 / Prayer Request</option>
+            <option>새가족 등록 / New Member</option>
+            <option>일반 문의 / General</option>
           </select>
         </div>
         <div class="form-group">
@@ -1750,7 +2054,7 @@
             <span class="kr-text">메시지</span>
             <span class="en-text" style="display:none">Message</span>
           </label>
-          <textarea placeholder="편하게 남겨 주세요 / Feel free to write anything..."></textarea>
+          <textarea name="message" placeholder="편하게 남겨 주세요 / Feel free to write anything..."></textarea>
         </div>
         <button type="submit" class="submit-btn">
           ✉️
@@ -1895,14 +2199,60 @@
   // FORM SUBMIT
   function handleSubmit(e) {
     e.preventDefault();
-    const btn = e.target.querySelector('.submit-btn');
+    const f    = e.target;
     const isKo = !document.body.classList.contains('en-mode');
-    btn.textContent = isKo ? '✅ 전송되었습니다!' : '✅ Message Sent!';
+    const btn  = f.querySelector('.submit-btn');
+
+    // 폼 데이터 수집
+    const name      = f.name.value.trim();
+    const contact   = f.contact.value.trim();
+    const area      = f.area.value;
+    const visitDate = f.visitDate.value;
+    const type      = f.type.value;
+    const message   = f.message.value.trim();
+
+    // 이메일 제목
+    const subject = isKo
+      ? `[에덴교회 방문 문의] ${name}`
+      : `[Eden Church Contact] ${name}`;
+
+    // 이메일 본문
+    const body = isKo
+      ? `안녕하세요, 에덴교회 달라스 입니다.\n아래 문의가 접수되었습니다.\n\n` +
+        `━━━━━━━━━━━━━━━━━━━━━\n` +
+        `이름:         ${name}\n` +
+        `연락처:       ${contact || '(미입력)'}\n` +
+        `거주 지역:    ${area    || '(미선택)'}\n` +
+        `방문 예정일:  ${visitDate || '(미정)'}\n` +
+        `문의 유형:    ${type    || '(미선택)'}\n` +
+        `━━━━━━━━━━━━━━━━━━━━━\n\n` +
+        `메시지:\n${message || '(없음)'}\n\n` +
+        `에덴교회 달라스 · kfbcc@yahoo.com · 214-629-3066`
+      : `Hello, Eden Church Dallas.\nNew inquiry received.\n\n` +
+        `━━━━━━━━━━━━━━━━━━━━━\n` +
+        `Name:          ${name}\n` +
+        `Contact:       ${contact || '(not provided)'}\n` +
+        `Area:          ${area    || '(not selected)'}\n` +
+        `Planned Visit: ${visitDate || '(TBD)'}\n` +
+        `Inquiry Type:  ${type    || '(not selected)'}\n` +
+        `━━━━━━━━━━━━━━━━━━━━━\n\n` +
+        `Message:\n${message || '(none)'}\n\n` +
+        `Eden Church Dallas · kfbcc@yahoo.com · 214-629-3066`;
+
+    // 교회 이메일로 바로 연결
+    const mailto = `mailto:kfbcc@yahoo.com`
+                 + `?subject=${encodeURIComponent(subject)}`
+                 + `&body=${encodeURIComponent(body)}`;
+
+    window.location.href = mailto;
+
+    // 버튼 완료 표시
+    btn.textContent = isKo ? '✅ 이메일 앱이 열립니다...' : '✅ Opening email app...';
     btn.style.background = '#4A7C2F';
     setTimeout(() => {
-      btn.innerHTML = isKo ? '✉️ 보내기' : '✉️ Send Message';
+      btn.innerHTML = isKo ? '✉️ <span class="kr-text">보내기</span>' : '✉️ <span class="en-text" style="display:none">Send Message</span>';
       btn.style.background = '';
-      e.target.reset();
+      f.reset();
     }, 3000);
   }
 
