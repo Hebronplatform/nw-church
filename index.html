@@ -1029,6 +1029,29 @@
     transition: all 0.3s;
   }
   .hebron-link:hover { background: #1976D2; transform: translateY(-2px); }
+  .hebron-qr-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+  .hebron-qr-img {
+    width: 110px; height: 110px;
+    background: white;
+    border-radius: 8px;
+    padding: 6px;
+    display: block;
+  }
+  .hebron-qr-label {
+    font-size: 11px;
+    color: rgba(255,255,255,0.55);
+    text-align: center;
+    letter-spacing: 0.05em;
+  }
+  @media (max-width: 768px) {
+    .hebron-qr-wrap { display: none; }
+  }
 
   /* ── CONTACT ── */
   #contact { background: var(--eden-warm); }
@@ -1890,7 +1913,7 @@
     <!-- 청년부 성경공부 -->
     <div class="community-card">
       <div class="community-photo-wrap">
-        <img src="https://images.unsplash.com/photo-1532012197267-da84d127e765?w=640&h=360&fit=crop&q=80"
+        <img src="https://images.unsplash.com/photo-1457369804613-52c61a468e7d?w=640&h=360&fit=crop&q=80"
              alt="청년부 모임"
              onerror="this.closest('.community-photo-wrap').style.background='linear-gradient(135deg,#2D5016,#4A7C2F)'">
         <div class="community-photo-overlay"></div>
@@ -2103,10 +2126,22 @@
       <span class="en-text" style="display:none">New to Dallas? H-Mart, hospitals, schools, churches and more —<br>Find everything you need to settle in at Hebronguide.com/dallas/</span>
     </div>
   </div>
-  <a href="https://hebronguide.com/dallas/" target="_blank" class="hebron-link">
-    <span class="kr-text">달라스 가이드 바로가기 →</span>
-    <span class="en-text" style="display:none">Visit Dallas Guide →</span>
-  </a>
+  <div style="display:flex; align-items:center; gap:24px; flex-shrink:0;">
+    <!-- QR 코드 -->
+    <div class="hebron-qr-wrap">
+      <img class="hebron-qr-img"
+           src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://hebronguide.com/dallas/&bgcolor=ffffff&color=0D2137&qzone=1"
+           alt="Hebronguide 달라스 QR 코드">
+      <div class="hebron-qr-label">
+        <span class="kr-text">카메라로 스캔하세요</span>
+        <span class="en-text" style="display:none">Scan to open</span>
+      </div>
+    </div>
+    <a href="https://hebronguide.com/dallas/" target="_blank" class="hebron-link">
+      <span class="kr-text">달라스 가이드 바로가기 →</span>
+      <span class="en-text" style="display:none">Visit Dallas Guide →</span>
+    </a>
+  </div>
 </div>
 
 <!-- CONTACT -->
@@ -2240,7 +2275,7 @@
         <span>에덴교회 달라스</span>
       </div>
       <div class="footer-mission">
-        <span class="kr-text">사랑하고 섬기며 예배하는 교회<br>A Church that Loves, Serves, and Worships<br>1401 Carrollton Pkwy, Carrollton, TX 75010<br>남침례단 달라스 지역 연합회 소속 · 2005년 설립</span>
+        <span class="kr-text">사랑하고 섬기며 예배하는 교회<br>A Church that Loves, Serves, and Worships<br>1401 Carrollton Pkwy, Carrollton, TX 75010<br>남침례회 달라스 지역 연합회 소속 · 2005년 설립</span>
         <span class="en-text" style="display:none">Eden Church at the Field<br>1401 Carrollton Pkwy, Carrollton, TX 75010<br>Southern Baptist · Dallas Association · Est. 2005</span>
       </div>
     </div>
